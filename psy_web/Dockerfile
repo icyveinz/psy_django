@@ -25,7 +25,7 @@ COPY . /psy_web
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN cd frontend && npm install
+# RUN cd frontend && npm install
 
 # Set the Python path
 ENV PYTHONPATH=/psy_web

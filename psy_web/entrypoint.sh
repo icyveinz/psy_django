@@ -12,7 +12,7 @@ done
 echo "PostgreSQL is ready. Running migrations..."
 
 # Run Django migrations
-python manage.py makemigrations unique_offer_screen
+# python manage.py makemigrations unique_offer_screen
 python manage.py migrate
 
 # Create superuser if it doesn't exist
@@ -38,12 +38,12 @@ echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
 # Build frontend assets
-echo "Running frontend build tasks..."
-cd frontend
-npx webpack
-gulp styles
-cd ..
+#echo "Running frontend build tasks..."
+#cd frontend
+#npx webpack
+#gulp styles
+#cd ..
 
 # Start the Django application using Gunicorn
 echo "Starting the Django application..."
-exec gunicorn --bind 0.0.0.0:8001 my_blog_django.wsgi:application
+exec gunicorn --bind 0.0.0.0:8001 psy_web.wsgi:application
