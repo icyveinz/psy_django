@@ -2,7 +2,9 @@ from django.db import models
 
 class NameBlock(models.Model):
     name = models.CharField(max_length=25)
+    surname = models.CharField(max_length=25)
     my_quote = models.CharField(max_length=250)
+    title_image_href = models.URLField()
     hours = models.IntegerField()
 
     def __str__(self):
@@ -16,7 +18,7 @@ class EducationPiece(models.Model):
         related_name='education_list'
     )
     name_of_education = models.CharField(max_length=120)
-    href = models.CharField(max_length=120)
+    href = models.URLField()
 
     def __str__(self):
         return self.name_of_education

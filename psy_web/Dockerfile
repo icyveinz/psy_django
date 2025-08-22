@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     && curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
     && apt-get install -y nodejs \
-    && npm install -g gulp-cli  # Install Gulp globally
+    && npm install -g gulp-cli webpack webpack-cli
 
 # Copy the project files into the container
 COPY . /psy_web

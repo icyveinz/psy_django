@@ -3,6 +3,7 @@ const sass = require('gulp-sass')(require('sass'));
 const concat = require('gulp-concat');
 const cleanCSS = require('gulp-clean-css');
 const rename = require('gulp-rename');
+const imagemin = require('gulp-imagemin');
 
 gulp.task('styles', function () {
     return gulp.src('sass/**/*.sass') // or 'sass/**/*.scss' if you're using SCSS
@@ -13,4 +14,9 @@ gulp.task('styles', function () {
         .pipe(gulp.dest('../static/css')); // output to static folder
 });
 
-gulp.task('default', gulp.series('styles'));
+gulp.task('images-mover', function() { // move images
+    return gulp.src('images/**/*.+(jpg|webp|svg|png)') // get the jpg|webp|svg|png files from src
+        .pipe(gulp.dest('../static/images')) // move to the dist.
+});
+
+gulp.task('default', gulp.parallel('styles', 'images-mover'));
