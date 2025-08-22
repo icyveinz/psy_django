@@ -1,0 +1,44 @@
+@mixin font_preset($weight, $size)
+  font-family: 'M PLUS Rounded 1c', sans-serif
+  font-weight: $weight
+  font-size: #{$size}vw
+
+.article-grid
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: 1.2em
+
+.article-div
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: flex-start
+  &__a-aligner
+    width: 90%
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    margin-bottom: 4%
+    margin-top: auto
+  &__img-div
+    margin: 5% 0 5% 0
+    width: 90%
+    aspect-ratio: 16 / 9
+    overflow: hidden
+  &__img
+    display: block
+    width: 100%
+    height: 100%
+    object-fit: cover
+  &__header
+    margin: 0 0 5% 0
+    width: 90%
+    @include font_preset(700, 1.5)
+  &__p
+    margin: 0 0 8% 0
+    width: 90%
+    flex-grow: 1
+    @include font_preset(400, 1.1)
+  &__a
+    margin: 0
+    @include font_preset(500, 1.3)

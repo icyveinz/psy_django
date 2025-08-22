@@ -1,0 +1,66 @@
+@mixin font_preset($weight, $size)
+  font-family: 'M PLUS Rounded 1c', sans-serif
+  font-weight: $weight
+  font-size: #{$size}vw
+
+.black-text-container
+  margin-left: 2.5%
+  padding-top: 0.3vw
+  padding-bottom: 0.3vw
+  display: flex
+  width: 25%
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  background-color: black
+  &__span
+    @include font_preset(400, 1.5)
+    color: white
+
+.appointment-div
+  display: flex
+  width: 90%
+  flex-direction: column
+  justify-content: flex-start
+  align-items: center
+  &__50-flex-div
+    width: 50%
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    &__header
+      margin: 0
+      @include font_preset(700, 2)
+    &__p
+      margin: 0
+      @include font_preset(400, 1.2)
+
+.appointment-align-left-div
+  display: flex
+  width: 100%
+  flex-direction: row
+  justify-content: flex-start
+  align-items: center
+
+
+.appointment-align-center-split
+  display: flex
+  width: 100%
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+
+.appointment-hrefs-grid
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  gap: 0.6em
+
+.animated-block > img
+  transition: transform 0.3s ease
+
+.animated-block:hover > img
+  transform: scale(1.1)
+
+.p-user-agreement
+  width: 90%
+  @include font_preset(400, 1.1)

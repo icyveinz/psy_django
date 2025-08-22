@@ -1,0 +1,137 @@
+// Миксины
+@mixin font_preset($weight, $size)
+  font-family: 'M PLUS Rounded 1c', sans-serif
+  font-weight: $weight
+  font-size: #{$size}vw
+
+// Плейсхолдеры
+%flex-row
+  display: flex
+  flex-direction: row
+
+%flex-col
+  display: flex
+  flex-direction: column
+
+%align-start
+  align-items: flex-start
+  justify-content: flex-start
+
+%centered
+  justify-content: center
+  align-items: center
+
+%justify-space-between
+  justify-content: space-between
+
+// Главный контейнер
+.my-main-block-div
+  margin-top: 3%
+  width: 100%
+  @extend %flex-row
+  @extend %justify-space-between
+
+// Левая часть — изображение
+.main-block-image-div
+  width: 49%
+  &__img
+    width: 100%
+    height: 100%
+
+// Правая часть — описание
+.main-block-about-div
+  width: 49%
+  @extend %flex-col
+  @extend %justify-space-between
+
+// Автор
+.main-block-author-div
+  width: 100%
+  height: 65%
+  @extend %flex-col
+  justify-content: center
+  align-items: flex-start
+
+  &__name-div
+    @extend %flex-col
+    @extend %align-start
+    width: 90%
+    height: 60%
+    margin-left: 4%
+
+    &__h2
+      margin: 0
+      @include font_preset(700, 4)
+
+  &__thoughts-div
+    display: flex
+    width: 90%
+    margin-left: 4%
+
+    &__p
+      @include font_preset(400, 1.3)
+
+// Достижения
+.main-block-achievements-div
+  width: 100%
+  height: 30%
+  @extend %flex-row
+  @extend %justify-space-between
+  align-items: center
+
+// Образование
+.main-block-education-div
+  width: 49%
+  height: 100%
+  @extend %flex-col
+  align-items: flex-start
+  justify-content: center
+
+  &__ul
+    list-style: none
+    padding-left: 8%
+    margin-left: 0
+
+  &__li-div
+    @extend %flex-row
+    justify-content: space-around
+    width: 95%
+
+  &__a-div
+    display: flex
+    @extend %centered
+
+  &__title
+    margin-left: 4%
+    @include font_preset(700, 2)
+
+  &__entities
+    margin: 0
+    @include font_preset(500, 1.1)
+
+  &__img
+    width: 55%
+
+// Часы
+.main-block-hours-div
+  width: 49%
+  height: 100%
+  @extend %flex-col
+  justify-content: flex-end
+  align-items: flex-start
+
+  &__aligner
+    @extend %flex-col
+    @extend %align-start
+    justify-content: center
+    width: 70%
+    height: 70%
+    margin: 0 0 5% 5%
+
+    &__hours
+      margin: 0
+      @include font_preset(700, 4)
+
+    &__comments
+      margin: 0
+      @include font_preset(400, 1.2)

@@ -1,0 +1,28 @@
+@mixin menu_v_padding
+  padding-top: 0.5vw
+  padding-bottom: 0.5vw
+
+@mixin text_decorator($color)
+  font-size: 1.5vw
+  color: $color
+  text-decoration: none
+  font-family: 'M PLUS Rounded 1c', sans-serif
+  font-weight: 400
+
+.menu-div
+  width: 100%
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+.menu-hrefs-div
+  @include menu_v_padding
+  margin-left: 1%
+  display: flex
+  width: 50%
+  flex-direction: row
+  align-items: center
+  justify-content: space-between
+
+.href-button
+  @include text_decorator(black)
