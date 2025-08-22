@@ -1,0 +1,48 @@
+version: "3.4"
+
+services:
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./static:/psy_web/static
+      - ./media:/psy_web/media
+    depends_on:
+      - db
+      - psy_web
+    networks:
+      - combined-network
+
+  db:
+    image: postgres:15
+    container_name: db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: applications_db
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    networks:
+      - combined-network
+
+  psy_web:
+    build: ./psy_web
+    container_name: psy_web
+    volumes:
+      - ./static:/psy_web/static
+      - ./media:/psy_web/media
+    environment:
+      DJANGO_SUPERUSER_USERNAME: admin
+      DJANGO_SUPERUSER_EMAIL: admin@example.com
+      DJANGO_SUPERUSER_PASSWORD: strongpassword
+    depends_on:
+      - db
+    networks:
+      - combined-network
+
+networks:
+  combined-network:
+    driver: bridge
