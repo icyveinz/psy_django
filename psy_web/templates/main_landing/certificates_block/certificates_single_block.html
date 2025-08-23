@@ -1,0 +1,24 @@
+<section class="certificate-single-div weak-blue-background border-radius-20 column-centered">
+    <section class="clock-text-div">
+        <img class="clock-text-div__img" src="http://localhost/static/images/clock-icon.svg">
+        <p class="clock-text-div__p">
+            {{ block.timing }} минут
+        </p>
+    </section>
+    <section class="certificate-header-div" >
+        <h3 class="certificate-header-div__header">{{ block.title }}</h3>
+    </section>
+    <ul class="certificate-ul-div">
+        <li class="certificate-li-div">
+            <p class="certificate-li-div__p-medium">Онлайн</p>
+            <p class="certificate-li-div__p-bold">{{ block.online_pricing }} руб/ч</p>
+        </li>
+        <li class="certificate-li-div">
+            <p class="certificate-li-div__p-medium">Очно</p>
+            <p class="certificate-li-div__p-bold">{{ block.actual_pricing }} руб/ч</p>
+        </li>
+    </ul>
+    <section class="certificate-buy-div">
+        <div class="google-appointment-marker"></div>
+    </section>
+</section>
