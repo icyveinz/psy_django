@@ -1,3 +1,4 @@
+const path = require('path');
 const gulp = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const concat = require('gulp-concat');
@@ -11,12 +12,8 @@ gulp.task('styles', function () {
         .pipe(concat('main.css')) // combine all into one file
         .pipe(cleanCSS()) // minify the CSS
         .pipe(rename({ suffix: '.min' })) // add .min suffix: main.min.css
-        .pipe(gulp.dest('../static/css')); // output to static folder
+        .pipe(gulp.dest(path.resolve(__dirname, './static/css'))); // output to static folder
 });
 
-gulp.task('images-mover', function() { // move images
-    return gulp.src('images/**/*.+(jpg|webp|svg|png)') // get the jpg|webp|svg|png files from src
-        .pipe(gulp.dest('../static/images')) // move to the dist.
-});
 
-gulp.task('default', gulp.parallel('styles', 'images-mover'));
+gulp.task('default', gulp.parallel('styles'));
