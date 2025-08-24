@@ -3,20 +3,18 @@ from .models import (
     NameBlock, EducationPiece,
     ServicesBlock, ServicesPiece,
     CertificatesBlock,
-    MyExperienceBlock, FactsPiece
+    MyExperienceBlock, FactsPiece, AppointmentSocialSquare, AppointmentDocs, AppointmentBlock
 )
 
-# --- NameBlock и связанные образования ---
 class EducationPieceInline(admin.TabularInline):
     model = EducationPiece
-    extra = 1  # сколько пустых форм показывать для добавления новых записей
+    extra = 1
 
 @admin.register(NameBlock)
 class NameBlockAdmin(admin.ModelAdmin):
     list_display = ('name', 'my_quote', 'hours')
     inlines = [EducationPieceInline]
 
-# --- ServicesBlock и связанные услуги ---
 class ServicesPieceInline(admin.TabularInline):
     model = ServicesPiece
     extra = 1
@@ -26,12 +24,10 @@ class ServicesBlockAdmin(admin.ModelAdmin):
     list_display = ('title',)
     inlines = [ServicesPieceInline]
 
-# --- CertificatesBlock ---
 @admin.register(CertificatesBlock)
 class CertificatesBlockAdmin(admin.ModelAdmin):
     list_display = ('title', 'timing', 'online_pricing', 'actual_pricing')
 
-# --- MyExperienceBlock и связанные факты ---
 class FactsPieceInline(admin.TabularInline):
     model = FactsPiece
     extra = 1
@@ -40,3 +36,17 @@ class FactsPieceInline(admin.TabularInline):
 class MyExperienceBlockAdmin(admin.ModelAdmin):
     list_display = ('hours_with_clients', 'hours_of_studying', 'my_quote')
     inlines = [FactsPieceInline]
+
+class AppointmentSocialSquareInline(admin.TabularInline):
+    model = AppointmentSocialSquare
+    extra = 1
+
+class AppointmentDocsInline(admin.StackedInline):
+    model = AppointmentDocs
+    can_delete = False
+    max_num = 1
+
+@admin.register(AppointmentBlock)
+class AppointmentBlockAdmin(admin.ModelAdmin):
+    list_display = ('id', 'my_message')
+    inlines = [AppointmentSocialSquareInline, AppointmentDocsInline]

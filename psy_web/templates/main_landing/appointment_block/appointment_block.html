@@ -1,0 +1,32 @@
+<div class="max-width-90 column-directive margin-top-2">
+    <section class="max-width-centered blue-background border-radius-20-bottom-excluded">
+        <section class="appointment-div margin-top-2">
+            <section class="appointment-align-left-div">
+                <section class="appointment-div__50-flex-div">
+                    <h4 class="appointment-div__50-flex-div__header">Оставайтесь всегда</h4>
+                    <section class="black-text-container border-radius-25">
+                        <span class="black-text-container__span">на связи</span>
+                    </section>
+                </section>
+            </section>
+            <section class="appointment-align-left-div">
+                <section class="appointment-div__50-flex-div">
+                    <p class="appointment-div__50-flex-div__p">{{ appointment_block.my_message }}</p>
+                </section>
+            </section>
+        </section>
+        <section class="appointment-div margin-top-2">
+            <section class="appointment-align-center-split">
+                <section class="appointment-hrefs-grid width-30">
+                    {% for li in appointment_block.social_square.all %}
+                        {% include "main_landing/appointment_block/appointment_square.html" %}
+                    {% endfor %}
+                </section>
+                <section class="width-30">
+                    <div class="google-appointment-marker"></div>
+                </section>
+            </section>
+        </section>
+        <p class="p-user-agreement">Записываясь на прием вы соглашаетесь с <a href="{{ appointment_block.docs.offer }}">офертой</a>, <a href="{{ appointment_block.docs.confidential }}">политикой конфиденциальности</a> и даете согласие на <a href="{{ appointment_block.docs.user_agreement }}">обработку персональных данных</a></p>
+    </section>
+</div>

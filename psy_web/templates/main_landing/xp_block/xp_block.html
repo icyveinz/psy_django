@@ -1,0 +1,41 @@
+<div class="max-width-90 column-directive">
+        <section class="shared-header-div margin-top-4">
+            <h2 class="shared-header-div__header">
+                Многолетний опыт
+            </h2>
+        </section>
+        <section class="xp-grid max-width">
+            <section class="hours-single-div hours-single-div__1 black-border border-radius-20">
+                <p class="hours-single-div__p">
+                    Более {{ experience_blocks.hours_with_clients }} часов с клиентами
+                </p>
+            </section>
+            <section class="hours-single-div hours-single-div__2 black-border border-radius-20">
+                <p class="hours-single-div__p">
+                    Более {{ experience_blocks.hours_of_studying }} часов обучения
+                </p>
+            </section>
+            <section class="xp-docs-single-div blue-background border-radius-20">
+                <h3 class="xp-docs-single-div__header">
+                    Мои сертификаты
+                </h3>
+                <p class="xp-docs-single-div__p">
+                    Тема: "Работа с утратой. Завершение терапии"
+                </p>
+            </section>
+            <section class="xp-about-me-div weak-blue-background border-radius-20">
+                <h3 class="xp-about-me-div__header">
+                    Несколько фактов обо мне
+                </h3>
+                <img class="xp-about-me-div__img border-radius-20" src="/static/images/portrait.jpg">
+                <ul>
+                    {% for li in experience_blocks.facts.all %}
+                        {% include "main_landing/xp_block/xp_li.html" %}
+                    {% endfor %}
+                </ul>
+            </section>
+            <section class="xp-quote-div">
+                <p class="xp-quote-div__p">{{ experience_blocks.my_quote }}</p>
+            </section>
+        </section>
+    </div>

@@ -4,7 +4,7 @@ from .models import (
     NameBlock,
     ServicesBlock,
     CertificatesBlock,
-    MyExperienceBlock
+    MyExperienceBlock, AppointmentBlock
 )
 
 def landing_page(request):
@@ -14,13 +14,16 @@ def landing_page(request):
 
     certificates = CertificatesBlock.objects.all()
 
-    experience_blocks = MyExperienceBlock.objects.prefetch_related('facts').all()
+    experience_blocks = MyExperienceBlock.objects.prefetch_related('facts').first()
+
+    appointment_block = AppointmentBlock.objects.select_related('docs').prefetch_related('social_square').first()
 
     context = {
         'name_block': name_block,
         'services_blocks': services_blocks,
         'certificates': certificates,
         'experience_blocks': experience_blocks,
+        'appointment_block': appointment_block
     }
 
     return render(request, 'main_landing/main_landing.html', context)
