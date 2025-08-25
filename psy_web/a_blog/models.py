@@ -29,10 +29,12 @@ class ArticlePage(Page):
         related_name='+'
     )
     caption = models.CharField(blank=True, max_length=80)
+    time_to_read = models.PositiveIntegerField(default=0)
     content_panels = Page.content_panels + [
         FieldPanel('intro'),
         FieldPanel('image'),
         FieldPanel('caption'),
         FieldPanel('body'),
         FieldPanel('date'),
+        FieldPanel('time_to_read'),
     ]
