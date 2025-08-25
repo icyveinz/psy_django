@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}MMy blog page{% endblock %}
+{% block assets %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<div class="max-width-centered">
+    {% include "main_landing/menu/menu.html" %}
+    {% block content %}
+    {% endblock %}
+</div>
+{% endblock %}
