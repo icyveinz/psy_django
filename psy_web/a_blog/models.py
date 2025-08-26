@@ -5,6 +5,9 @@ from wagtail.models import Page
 from django.db import models
 
 
+class HomePage(Page):
+    pass
+
 # Create your models here.
 class BlogPage(Page):
     body = RichTextField(blank=True)

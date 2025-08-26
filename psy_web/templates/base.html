@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+    <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+    <script>
+        (function() {
+            window.addEventListener('load', function() {
+                const containers = document.querySelectorAll('.google-appointment-marker');
+                containers.forEach(container => {
+                    calendar.schedulingButton.load({
+                        url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1W9G2l74hHM_SATkwB_vRevcybBl6OL5VyNKGMTFRpnnZWOJUphepK6DOmybdl0Lvu0yrp86Q2?gv=true',
+                        color: '#000000',
+                        label: "\u0417\u0430\u043F\u0438\u0441\u0430\u0442\u044C\u0441\u044F",
+                        target: container,
+                    });
+                })
+            });
+        })();
+    </script>
     {% block assets %}
     {% endblock %}
 </head>
