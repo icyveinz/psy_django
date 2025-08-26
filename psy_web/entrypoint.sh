@@ -14,6 +14,7 @@ echo "PostgreSQL is ready. Running migrations..."
 # Run Django migrations
 python manage.py makemigrations main_landing
 python manage.py makemigrations a_blog
+python manage.py makemigrations my_docs
 python manage.py migrate
 
 # Create superuser if it doesn't exist

@@ -1,0 +1,19 @@
+{% extends 'docs_layout/docs_layout.html' %}
+{% load wagtailcore_tags %}
+{% block content %}
+  <h1>{{ page.title }}</h1>
+
+  <div class="body">
+    {{ page.body|richtext }}
+  </div>
+
+  {% if page.document %}
+    <p>
+      📄 <a href="{{ page.document.url }}" download>
+        Скачать документ
+      </a>
+    </p>
+  {% endif %}
+
+  <p><small>Опубликовано: {{ page.date_published }}</small></p>
+{% endblock %}

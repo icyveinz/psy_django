@@ -1,0 +1,25 @@
+from datetime import date
+from django.db import models
+from wagtail.admin.panels import FieldPanel
+from wagtail.documents.models import Document
+from wagtail.fields import RichTextField
+from wagtail.models import Page
+
+
+# Create your models here.
+class DocumentsPage(Page):
+    body = RichTextField(blank=True)
+    date_published = models.DateField("Post date", default=date.today)
+    document = models.ForeignKey(
+        Document,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    content_panels = Page.content_panels + [
+        FieldPanel('body'),
+        FieldPanel('document'),
+        FieldPanel('date_published'),
+    ]
+    template = "my_docs/docs_template.html"
