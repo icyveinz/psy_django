@@ -7,7 +7,9 @@
 {% block body %}
 <div class="max-width-centered">
     {% include "main_landing/menu/menu.html" %}
-    {% block content %}
-    {% endblock %}
+    <div class="width-90">
+        {% block content %}
+        {% endblock %}
+    </div>
 </div>
 {% endblock %}

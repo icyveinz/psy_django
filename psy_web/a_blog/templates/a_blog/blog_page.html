@@ -5,30 +5,63 @@
 {% block class %}blog bg-black text-white{% endblock %}
 
 {% block content %}
-
-    <div class="max-w-[1600px] mx-auto px-8 py-24">
-
-        <h1>{{ page.title }}</h1>
-        <p>{{ page.body|richtext }}</p>
-
-        <div class="grid mt-8 gap-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div class="max-width-90">
+        <div class="blog-grid">
             {% for article in articles %}
-            <article class="relative rounded-2xl border border-gray-500 hover:border-gray-400 bg-neutral-900 ">
-                <a href="{% pageurl article %}" class="flex flex-col justify-between h-full p-4">
-                    <div>
-                        <h2>{{ article.title }}</h2>
-                        <p>{{ article.specific.intro }}</p>
+                <div>
+                    {% image article.specific.image fill-314x166%}
+                    <div class="grid-title-container">
+                        <h2 class="blog-grid-text__header">
+                            {{ article.title }}
+                        </h2>
+                        <a class="width-10" href="{% pageurl article %}" target="_blank" style="text-decoration: none;">
+                            <div class="align-centered max-width black-border border-radius-10 black-background animated-block">
+                                <img class="width-60 padding-top-bottom-08vw" src="/static/images/right-arrow-1.svg" alt="link to the article">
+                            </div>
+                        </a>
                     </div>
-                    <div>
-                        <p class="text-sm text-neutral-500">{{ article.specific.date }}</p>
-                        <figure class="mb-4">
-                            {% image article.specific.image fill-314x166 class="w-full rounded-lg"%}
-                        </figure>
-                        <span class="hover:underline">Read more</span>
+                    <div class="grid-date-time-container width-60">
+                        <p class="blog-grid-text__p zero-margin">
+                            {{ article.specific.date }}
+                        </p>
+                        <span class="blog-grid-text__p zero-margin">
+                            •
+                        </span>
+                        <p class="blog-grid-text__p zero-margin">
+                            {{ article.specific.time_to_read }} минут на чтение
+                        </p>
                     </div>
-                </a>
-            </article>
+                </div>
             {% endfor %}
         </div>
     </div>
 {% endblock %}
+
+{#{% block content %}#}
+{##}
+{#    <div class="max-w-[1600px] mx-auto px-8 py-24">#}
+{##}
+{#        <h1>{{ page.title }}</h1>#}
+{#        <p>{{ page.body|richtext }}</p>#}
+{##}
+{#        <div class="grid mt-8 gap-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">#}
+{#            {% for article in articles %}#}
+{#            <article class="relative rounded-2xl border border-gray-500 hover:border-gray-400 bg-neutral-900 ">#}
+{#                <a href="{% pageurl article %}" class="flex flex-col justify-between h-full p-4">#}
+{#                    <div>#}
+{#                        <h2>{{ article.title }}</h2>#}
+{#                        <p>{{ article.specific.intro }}</p>#}
+{#                    </div>#}
+{#                    <div>#}
+{#                        <p class="text-sm text-neutral-500">{{ article.specific.date }}</p>#}
+{#                        <figure class="mb-4">#}
+{#                            {% image article.specific.image fill-314x166 class="w-full rounded-lg"%}#}
+{#                        </figure>#}
+{#                        <span class="hover:underline">Read more</span>#}
+{#                    </div>#}
+{#                </a>#}
+{#            </article>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
