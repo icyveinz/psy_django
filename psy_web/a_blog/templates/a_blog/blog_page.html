@@ -9,7 +9,7 @@
         <div class="blog-grid">
             {% for article in articles %}
                 <div>
-                    {% image article.specific.image fill-314x166%}
+                    <img class="blog-article-image border-radius-25" src="{{ article.specific.image.file.url }}" alt="{{ article.specific.image.title }}">
                     <div class="grid-title-container">
                         <h2 class="blog-grid-text__header">
                             {{ article.title }}
