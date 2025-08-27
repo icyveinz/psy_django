@@ -1,17 +1,17 @@
 <div class="max-width-90">
     <section class="my-main-block-div">
         <section class="main-block-image-div">
-            <img class="main-block-image-div__img border-radius-20" alt="" src={{ name_block.title_image_href }}>
+            <img class="main-block-image-div__img border-radius-20" alt="" src={{ main_block.title_image.file.url }}>
         </section>
         <section class="main-block-about-div">
             <section class="main-block-author-div weak-blue-background border-radius-20">
                 <div class="main-block-author-div__name-div">
-                    <h2 class="main-block-author-div__name-div__h2">{{ name_block.name }}</h2>
-                    <h2 class="main-block-author-div__name-div__h2">{{ name_block.surname }}</h2>
+                    <h2 class="main-block-author-div__name-div__h2">{{ main_block.name }}</h2>
+                    <h2 class="main-block-author-div__name-div__h2">{{ main_block.surname }}</h2>
                 </div>
                 <div class="main-block-author-div__thoughts-div">
                     <p class="main-block-author-div__thoughts-div__p">
-                        {{ name_block.my_quote }}
+                        {{ main_block.my_quote }}
                     </p>
                 </div>
             </section>
@@ -19,14 +19,14 @@
                 <section class="main-block-education-div grey-background border-radius-20">
                     <h2 class="main-block-education-div__title">Образование</h2>
                     <ul class="main-block-education-div__ul">
-                        {% for education in name_block.education_list.all %}
-                            {% include "main_landing/my_main_block/education_template.html" with education=education %}
+                        {% for education in main_block.education_pieces.all %}
+                            {% include "main_landing/my_main_block/education_template.html" %}
                         {% endfor %}
                     </ul>
                 </section>
                 <section class="main-block-hours-div blue-background border-radius-20">
                     <section class="main-block-hours-div__aligner">
-                        <h2 class="main-block-hours-div__aligner__hours">{{ name_block.hours }}</h2>
+                        <h2 class="main-block-hours-div__aligner__hours">{{ main_block.hours }}+</h2>
                         <p class="main-block-hours-div__aligner__comments">часов с клиентами</p>
                     </section>
                 </section>

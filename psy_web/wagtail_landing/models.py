@@ -3,6 +3,8 @@ from modelcluster.models import ClusterableModel
 from wagtail.models import Page, Orderable
 from wagtail.admin.panels import FieldPanel, InlinePanel, PageChooserPanel
 from modelcluster.fields import ParentalKey
+from a_blog.models import BlogPage
+
 
 # -------------------- LandingMainPage --------------------
 class LandingMainPage(Page):
@@ -16,6 +18,18 @@ class LandingMainPage(Page):
         InlinePanel('experience_blocks', label='Experience Blocks'),
         InlinePanel('appointment_blocks', label='Appointment Blocks')
     ]
+
+    template = "main_landing/main_landing.html"
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context['landing_title'] = self.landing_title
+
+        # Получаем статьи так же, как в BlogPage.get_context
+        articles = BlogPage.objects.live().order_by('-first_published_at')
+        context['articles'] = articles[:3]  # можно лимитировать
+        return context
+
 
 # -------------------- NameBlock --------------------
 class NameBlock(Orderable, ClusterableModel):
@@ -89,11 +103,15 @@ class MyExperienceBlock(Orderable, ClusterableModel):
     hours_with_clients = models.IntegerField()
     hours_of_studying = models.IntegerField()
     my_quote = models.CharField(max_length=300)
+    profile_facts_picture = models.ForeignKey(
+        'wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
+    )
 
     panels = [
         FieldPanel('hours_with_clients'),
         FieldPanel('hours_of_studying'),
         FieldPanel('my_quote'),
+        FieldPanel('profile_facts_picture'),
         InlinePanel('facts_pieces', label='Facts Pieces'),
     ]
 

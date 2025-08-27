@@ -1,13 +1,13 @@
 <section class="services-single-card-div black-border max-width border-radius-20">
     <section class="services-single-card-div__title-div">
         <h3 class="services-single-card-div__title-div__h3">
-            {{ service.title }}
+            {{ service.services_title }}
         </h3>
     </section>
     <section class="services-single-card-div__inverted-div">
         <ul class="services-single-card-div__services-ul">
-            {% for li in service.services_list.all %}
-                {% include "main_landing/services_block/service_li.html" %}
+            {% for li in service.services_pieces.all %}
+                {% include "main_landing/services_block/service_li.html" with img=service.left_image_svg %}
             {% endfor %}
         </ul>
     </section>

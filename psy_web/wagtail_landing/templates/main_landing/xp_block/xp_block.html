@@ -7,12 +7,12 @@
         <section class="xp-grid max-width">
             <section class="hours-single-div hours-single-div__1 black-border border-radius-20">
                 <p class="hours-single-div__p">
-                    Более {{ experience_blocks.hours_with_clients }} часов с клиентами
+                    Более {{ xp_block.hours_with_clients }} часов с клиентами
                 </p>
             </section>
             <section class="hours-single-div hours-single-div__2 black-border border-radius-20">
                 <p class="hours-single-div__p">
-                    Более {{ experience_blocks.hours_of_studying }} часов обучения
+                    Более {{ xp_block.hours_of_studying }} часов обучения
                 </p>
             </section>
             <section class="xp-docs-single-div blue-background border-radius-20">
@@ -29,13 +29,13 @@
                 </h3>
                 <img class="xp-about-me-div__img border-radius-20" src="/static/images/portrait.jpg">
                 <ul>
-                    {% for li in experience_blocks.facts.all %}
+                    {% for li in xp_block.facts_pieces.all %}
                         {% include "main_landing/xp_block/xp_li.html" %}
                     {% endfor %}
                 </ul>
             </section>
             <section class="xp-quote-div">
-                <p class="xp-quote-div__p">{{ experience_blocks.my_quote }}</p>
+                <p class="xp-quote-div__p">{{ xp_block.my_quote }}</p>
             </section>
         </section>
     </div>
