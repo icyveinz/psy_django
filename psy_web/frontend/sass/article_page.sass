@@ -1,0 +1,19 @@
+@mixin font_preset($weight, $size)
+  font-family: 'M PLUS Rounded 1c', sans-serif
+  font-weight: $weight
+  font-size: #{$size}vw
+
+.author-div
+  display: flex
+  flex-direction: row
+
+.author-vertical-div
+  display: flex
+  flex-direction: column
+  justify-content: center
+
+.article-page
+  &-h-font
+    @include font_preset(700, 1.3vw)
+  &-p-font
+    @include font_preset(400, 1vw)

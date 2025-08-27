@@ -1,39 +1,46 @@
 {% extends 'blog_layout/blog_layout.html' %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags %}
 
 {% block class %}article{% endblock %}
 
-{% block content %} 
-
-<div class="max-w-4xl mx-auto px-8 py-24">
-    <h1>{{ page.title }}</h1>
-    <a href="" class="flex items-center gap-1 mb-2">
-        <img class="h-8 w-8 rounded-full object-cover" src="{{ page.owner.profile.avatar }}" alt="Avatar">
-        {{ page.owner.profile.name }}
-    </a>
-    <p class="text-sm text-neutral-500">{{ page.date }}</p>
-    <p class="text-2xl font-serif italic text-neutral-800">{{ page.intro }}</p>
-
-    <div class="mb-8">
-        <figure>
-            {% image page.image original class="w-full" %}
-        </figure>
-
-        {% if page.caption %}
-            <figcaption class="text-sm text-neutral-500 text-center mt-2 mb-4">
-                {{ page.caption }}
-            </figcaption>
-        {% endif %}
+{% block content %}
+    <div class="width-90 margin-top-2">
+        <img
+                class="max-width img-16-9-cover border-radius-25 prevent-selection-img"
+                draggable="false"
+                src="{{ page.specific.image.file.url }}"
+                alt="{{ article.specific.image.title }}"
+        >
+        <p class="article-page-p-font">
+            {{ page.time_to_read }} минут на чтение
+        </p>
+        <h1 class="article-page-h-font zero-margin-bottom">
+            {{ page.title }}
+        </h1>
+        <p class="article-page-p-font">
+            {{ page.intro }}
+        </p>
+        <div class="author-div max-width">
+            <img
+                    class="circle-img width-8 img-square-cover prevent-selection-img"
+                    src="/static/images/portrait.jpg"
+                    alt=""
+                    draggable="false">
+            <div class="author-vertical-div margin-left-2">
+                <p class="article-page-p-font zero-margin">
+                    Написал
+                </p>
+                <p class="article-page-h-font zero-margin">
+                    Егор Иванов
+                </p>
+            </div>
+        </div>
+        <p>{{ page.body|richtext }}</p>
     </div>
-
-    <p>{{ page.body|richtext }}</p>
-
-    <div class="mt-4 inline-block">
-        <a href="{{ page.get_parent.url }}" class="underline">Return to blog</a>
-    </div>
-
-</div>
-
-
+    <section class="shared-black-button border-radius-10 margin-top-2">
+        <a class="shared-black-button__a padding-top-bottom-05vw" href="{{ page.get_parent.url }}">
+            Вернуться
+        </a>
+    </section>
 {% endblock %}
