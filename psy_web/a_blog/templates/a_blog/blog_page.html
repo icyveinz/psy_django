@@ -1,6 +1,6 @@
 {% extends 'blog_layout/blog_layout.html' %}
 
-{% load wagtailcore_tags wagtailimages_tags%}
+{% load wagtailcore_tags wagtailimages_tags ru_plural %}
 
 {% block class %}blog bg-black text-white{% endblock %}
 
@@ -28,7 +28,7 @@
                             •
                         </span>
                         <p class="blog-grid-text__p zero-margin">
-                            {{ article.specific.time_to_read }} минут на чтение
+                            {{ article.specific.time_to_read }} {{ article.specific.time_to_read|ru_minute }} на чтение
                         </p>
                     </div>
                 </div>

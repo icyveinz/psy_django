@@ -1,6 +1,6 @@
 {% extends 'blog_layout/blog_layout.html' %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags ru_plural %}
 
 {% block class %}article{% endblock %}
 
@@ -10,10 +10,10 @@
                 class="max-width img-16-9-cover border-radius-25 prevent-selection-img"
                 draggable="false"
                 src="{{ page.specific.image.file.url }}"
-                alt="{{ article.specific.image.title }}"
+                alt="{{ page.specific.image.title }}"
         >
         <p class="article-page-p-font">
-            {{ page.time_to_read }} минут на чтение
+            {{ page.time_to_read }} {{ page.time_to_read|ru_minute }} на чтение
         </p>
         <h1 class="article-page-h-font zero-margin-bottom">
             {{ page.title }}
