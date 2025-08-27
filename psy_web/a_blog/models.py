@@ -5,7 +5,7 @@ from wagtail.models import Page
 from django.db import models
 
 
-class HomePage(Page):
+class MyWebSite(Page):
     pass
 
 # Create your models here.

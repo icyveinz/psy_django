@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'main_landing',
+    'wagtail_landing',
     "a_blog",
     "my_docs",
     
