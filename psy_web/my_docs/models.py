@@ -5,6 +5,8 @@ from wagtail.documents.models import Document
 from wagtail.fields import RichTextField
 from wagtail.models import Page
 
+class DocumentsFolder(Page):
+    pass
 
 # Create your models here.
 class DocumentsPage(Page):
