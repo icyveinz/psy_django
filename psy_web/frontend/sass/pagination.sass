@@ -1,0 +1,17 @@
+@mixin font_preset($weight, $size)
+  font-family: 'M PLUS Rounded 1c', sans-serif
+  font-weight: $weight
+  font-size: #{$size}vw
+
+
+.pagination-container
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  gap: 2vw
+
+.pagination-span
+  @include font_preset(700, 1.5)
+  color: white
+
