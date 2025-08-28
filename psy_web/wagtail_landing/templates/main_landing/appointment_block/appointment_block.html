@@ -1,3 +1,5 @@
+{% load wagtailcore_tags %}
+
 <div class="max-width-90 column-directive margin-top-2">
     <section class="max-width-centered blue-background border-radius-20-bottom-excluded">
         <section class="appointment-div margin-top-2">
@@ -27,7 +29,17 @@
                 </section>
             </section>
         </section>
-        <p class="p-user-agreement">Записываясь на прием вы соглашаетесь с <a href="{{ appointment_block.docs.offer_page }}">офертой</a>, <a href="{{ appointment_block.docs.confidential_page }}">политикой конфиденциальности</a> и даете согласие на <a href="{{ appointment_block.docs.user_agreement_page }}">обработку персональных данных</a></p>
+        {% with docs=appointment_block.docs.first %}
+            {% if docs %}
+                <p class="p-user-agreement">
+                    Записываясь на прием вы соглашаетесь с
+                    <a href="{% pageurl docs.offer_page %}">офертой</a>,
+                    <a href="{% pageurl docs.confidential_page %}">политикой конфиденциальности</a>
+                    и даете согласие на
+                    <a href="{% pageurl docs.user_agreement_page %}">обработку персональных данных</a>
+                </p>
+            {% endif %}
+        {% endwith %}
         <p class="p-user-agreement">ИП Иванов Егор Кириллович, ОГРНИП 323774600558414</p>
     </section>
 </div>

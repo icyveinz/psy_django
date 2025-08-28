@@ -3,8 +3,11 @@ from modelcluster.models import ClusterableModel
 from wagtail.models import Page, Orderable
 from wagtail.admin.panels import FieldPanel, InlinePanel, PageChooserPanel
 from modelcluster.fields import ParentalKey
-from a_blog.models import BlogPage
+from a_blog.models import ArticlePage
 
+
+class LandingFolder(Page):
+    pass
 
 # -------------------- LandingMainPage --------------------
 class LandingMainPage(Page):
@@ -26,8 +29,8 @@ class LandingMainPage(Page):
         context['landing_title'] = self.landing_title
 
         # Получаем статьи так же, как в BlogPage.get_context
-        articles = BlogPage.objects.live().order_by('-first_published_at')
-        context['articles'] = articles[:3]  # можно лимитировать
+        articles = ArticlePage.objects.live().order_by('-first_published_at')
+        context['articles'] = articles[:4]  # можно лимитировать
         return context
 
 
