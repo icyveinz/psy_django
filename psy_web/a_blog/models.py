@@ -16,9 +16,15 @@ class BlogPage(Page):
     ]
     template = "a_blog/blog_page.html"
     def get_context(self, request):
+        from wagtail_landing.models import LandingMainPage
         articles = self.get_children().live().order_by('-first_published_at')
+        landing = LandingMainPage.objects.first()
         context = super().get_context(request)
+        appointment_blocks = landing.appointment_blocks.all().prefetch_related(
+            'social_squares', 'docs'
+        )
         context['articles'] = articles
+        context['appointment_blocks'] = appointment_blocks
         return context
 
 class ArticlePage(Page):
@@ -41,3 +47,15 @@ class ArticlePage(Page):
         FieldPanel('date'),
         FieldPanel('time_to_read'),
     ]
+
+    def get_context(self, request, *args, **kwargs):
+        from wagtail_landing.models import LandingMainPage
+        context = super().get_context(request, *args, **kwargs)
+        landing = LandingMainPage.objects.first()
+        if landing:
+            appointment_blocks = landing.appointment_blocks.all().prefetch_related(
+                'social_squares', 'docs'
+            )
+            context['appointment_blocks'] = appointment_blocks
+
+        return context

@@ -9,6 +9,8 @@
     {% include "main_landing/menu/menu.html" %}
     {% block content %}
     {% endblock %}
-    {% include "main_landing/appointment_block/appointment_block.html" %}
+    {% if appointment_blocks %}
+        {% include "main_landing/appointment_block/appointment_block.html" with appointment_block=appointment_blocks|first %}
+    {% endif %}
 </div>
 {% endblock %}
