@@ -25,3 +25,15 @@ class DocumentsPage(Page):
         FieldPanel('date_published'),
     ]
     template = "my_docs/docs_template.html"
+
+    def get_context(self, request, *args, **kwargs):
+        from wagtail_landing.models import LandingMainPage
+        context = super().get_context(request, *args, **kwargs)
+        landing = LandingMainPage.objects.first()
+        if landing:
+            appointment_blocks = landing.appointment_blocks.all().prefetch_related(
+                'social_squares', 'docs'
+            )
+            context['appointment_blocks'] = appointment_blocks
+
+        return context

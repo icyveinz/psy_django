@@ -7,10 +7,10 @@
 {% block body %}
 <div class="max-width-centered">
     {% include "main_landing/menu/menu.html" %}
-    <div class="width-90">
-        {% block content %}
-        {% endblock %}
-    </div>
-    {% include "main_landing/appointment_block/appointment_block.html" %}
+    {% block content %}
+    {% endblock %}
+    {% if appointment_blocks %}
+        {% include "main_landing/appointment_block/appointment_block.html" with appointment_block=appointment_blocks|first %}
+    {% endif %}
 </div>
 {% endblock %}
