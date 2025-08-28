@@ -1,16 +1,21 @@
 {% extends 'my_docs/docs_layout.html' %}
 {% load wagtailcore_tags %}
 {% block content %}
-    <h1>{{ page.title }}</h1>
+    <h1 class="width-90 docs-page-header">
+        {{ page.title }}
+    </h1>
+    <p class="width-90 docs-page-p">
+        Опубликовано: {{ page.date_published }}
+    </p>
     <div class="width-90">
         {{ page.body|richtext }}
     </div>
     {% if page.document %}
-        <p>
-            📄 <a href="{{ page.document.url }}" download>
-            Скачать документ
-        </a>
-        </p>
+        <section class="shared-black-button border-radius-10 margin-top-2">
+            <a class="shared-black-button__a padding-top-bottom-05vw"
+               href="{{ page.document.url }}" download>
+                Скачать документ
+            </a>
+        </section>
     {% endif %}
-    <p><small>Опубликовано: {{ page.date_published }}</small></p>
 {% endblock %}

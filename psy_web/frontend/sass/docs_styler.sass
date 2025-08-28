@@ -1,0 +1,10 @@
+@mixin font_preset($weight, $size)
+  font-family: 'M PLUS Rounded 1c', sans-serif
+  font-weight: $weight
+  font-size: #{$size}vw
+
+.docs-page-header
+  @include font_preset(700, 2)
+
+.docs-page-p
+  @include font_preset(400, 1.4)
