@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'wagtail_landing',
     "a_blog",
     "my_docs",
+    "users",
     
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',

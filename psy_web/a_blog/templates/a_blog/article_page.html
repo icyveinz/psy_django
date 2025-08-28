@@ -22,7 +22,7 @@
         <div class="author-div max-width">
             <img
                     class="circle-img width-8 img-square-cover prevent-selection-img"
-                    src="/static/images/portrait.jpg"
+                    src="{{ author.profile_image.file.url }}"
                     alt=""
                     draggable="false">
             <div class="author-vertical-div margin-left-2">
@@ -30,7 +30,7 @@
                     Написал
                 </p>
                 <p class="article-page-h-font zero-margin">
-                    Егор Иванов
+                    {{ author.name }} {{ author.surname }}
                 </p>
             </div>
         </div>

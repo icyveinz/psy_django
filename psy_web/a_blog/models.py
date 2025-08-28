@@ -6,6 +6,8 @@ from wagtail.fields import RichTextField
 from wagtail.models import Page
 from django.db import models
 
+from users.models import AuthorProfile
+
 
 class MyWebSite(Page):
     pass
@@ -75,6 +77,7 @@ class ArticlePage(Page):
         context = super().get_context(request, *args, **kwargs)
         landing = LandingMainPage.objects.first()
         context['blog'] = BlogPage.objects.first()
+        context['author'] = AuthorProfile.objects.first()
         if landing:
             appointment_blocks = landing.appointment_blocks.all().prefetch_related(
                 'social_squares', 'docs'
