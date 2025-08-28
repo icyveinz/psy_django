@@ -23,6 +23,8 @@ class BlogPage(Page):
         appointment_blocks = landing.appointment_blocks.all().prefetch_related(
             'social_squares', 'docs'
         )
+        context['blog'] = BlogPage.objects.first()
+        context['landing_page'] = LandingMainPage.objects.first()
         context['articles'] = articles
         context['appointment_blocks'] = appointment_blocks
         return context
@@ -52,10 +54,12 @@ class ArticlePage(Page):
         from wagtail_landing.models import LandingMainPage
         context = super().get_context(request, *args, **kwargs)
         landing = LandingMainPage.objects.first()
+        context['blog'] = BlogPage.objects.first()
         if landing:
             appointment_blocks = landing.appointment_blocks.all().prefetch_related(
                 'social_squares', 'docs'
             )
+            context['landing_page'] = LandingMainPage.objects.first()
             context['appointment_blocks'] = appointment_blocks
 
         return context

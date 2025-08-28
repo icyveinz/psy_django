@@ -4,6 +4,8 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.documents.models import Document
 from wagtail.fields import RichTextField
 from wagtail.models import Page
+from a_blog.models import BlogPage
+
 
 class DocumentsFolder(Page):
     pass
@@ -30,10 +32,12 @@ class DocumentsPage(Page):
         from wagtail_landing.models import LandingMainPage
         context = super().get_context(request, *args, **kwargs)
         landing = LandingMainPage.objects.first()
+        context['blog'] = BlogPage.objects.first()
         if landing:
             appointment_blocks = landing.appointment_blocks.all().prefetch_related(
                 'social_squares', 'docs'
             )
+            context['landing_page'] = LandingMainPage.objects.first()
             context['appointment_blocks'] = appointment_blocks
 
         return context

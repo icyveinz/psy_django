@@ -1,11 +1,12 @@
+{% load wagtailcore_tags %}
 <div class="max-width-90">
     <section class="menu-div">
         <section class="menu-hrefs-div">
-            <a class="href-button" href="/">Главная</a>
-            <a class="href-button" href="/">Мой опыт</a>
-            <a class="href-button" href="/">Услуги</a>
-            <a class="href-button" href="/">Контакты</a>
-            <a class="href-button" href="/">Статьи</a>
+            <a class="href-button" href="{% pageurl landing_page %}">Главная</a>
+            <a class="href-button" href="{% pageurl landing_page %}#my-experience-anchor">Мой опыт</a>
+            <a class="href-button" href="{% pageurl landing_page %}#my-services-anchor">Услуги</a>
+            <a class="href-button" href="{% pageurl landing_page %}#my-contacts-anchor">Контакты</a>
+            <a class="href-button" href="{% pageurl blog %}">Статьи</a>
         </section>
         <section class="width-30">
             <div class="google-appointment-marker"></div>
