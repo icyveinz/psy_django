@@ -118,6 +118,7 @@ class MyExperienceBlock(Orderable, ClusterableModel):
         FieldPanel('my_quote'),
         FieldPanel('profile_facts_picture'),
         InlinePanel('facts_pieces', label='Facts Pieces'),
+        InlinePanel('study_results_cards', label='Study Results Cards'),
     ]
 
 class FactsPiece(Orderable):
@@ -125,6 +126,24 @@ class FactsPiece(Orderable):
     fact = models.CharField(max_length=200)
 
     panels = [FieldPanel('fact')]
+
+class StudyResultsCard(Orderable, ClusterableModel):
+    page = ParentalKey(MyExperienceBlock, on_delete=models.CASCADE, related_name='study_results_cards')
+    course_title = models.CharField(max_length=200)
+    course_platform = models.CharField(max_length=200)
+    year_ended = models.IntegerField()
+
+    panels = [
+        FieldPanel('course_title'),
+        FieldPanel('course_platform'),
+        FieldPanel('year_ended'),
+        InlinePanel('study_results_li', label='Study Results Cards', max_num=3)
+    ]
+
+class StudyResultsLink(Orderable):
+    page = ParentalKey(StudyResultsCard, on_delete=models.CASCADE, related_name='study_results_li')
+    skills_achieved = models.CharField(max_length=200)
+
 
 # -------------------- AppointmentBlock --------------------
 class AppointmentBlock(Orderable, ClusterableModel):
