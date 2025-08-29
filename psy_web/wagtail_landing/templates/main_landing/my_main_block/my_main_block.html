@@ -1,7 +1,12 @@
 <div class="max-width-90">
     <section class="my-main-block-div">
         <section class="main-block-image-div">
-            <img class="main-block-image-div__img border-radius-20" alt="" src={{ main_block.title_image.file.url }}>
+            <img
+                    class="main-block-image-div__img border-radius-20 prevent-selection-img"
+                    alt=""
+                    src="{{ main_block.title_image.file.url }}"
+                    draggable="false"
+            >
         </section>
         <section class="main-block-about-div">
             <section class="main-block-author-div weak-blue-background border-radius-20">

@@ -27,7 +27,12 @@
                 <h3 class="xp-about-me-div__header">
                     Несколько фактов обо мне
                 </h3>
-                <img class="xp-about-me-div__img border-radius-20" src="/static/images/portrait.jpg">
+                <img
+                        class="xp-about-me-div__img border-radius-20 prevent-selection-img"
+                        src="/static/images/portrait.jpg"
+                        alt="Author image"
+                        draggable="false"
+                >
                 <ul>
                     {% for li in xp_block.facts_pieces.all %}
                         {% include "main_landing/xp_block/xp_li.html" %}

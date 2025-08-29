@@ -7,14 +7,23 @@
         <div class="blog-grid">
             {% for article in articles %}
                 <div>
-                    <img class="blog-article-image border-radius-25" src="{{ article.specific.image.file.url }}" alt="{{ article.specific.image.title }}">
+                    <img class="blog-article-image border-radius-25 prevent-selection-img"
+                         draggable="false"
+                         src="{{ article.specific.image.file.url }}"
+                         alt="{{ article.specific.image.title }}"
+                    >
                     <div class="grid-title-container">
                         <h2 class="blog-grid-text__header">
                             {{ article.title }}
                         </h2>
                         <a class="width-10" href="{% pageurl article %}" target="_blank" style="text-decoration: none;">
                             <div class="align-centered max-width black-border border-radius-10 black-background animated-block">
-                                <img class="width-60 padding-top-bottom-08vw" src="/static/images/right-arrow-1.svg" alt="link to the article">
+                                <img
+                                        class="width-60 padding-top-bottom-08vw prevent-selection-img"
+                                        src="/static/images/right-arrow-1.svg"
+                                        alt="link to the article"
+                                        draggable="false"
+                                >
                             </div>
                         </a>
                     </div>
@@ -35,7 +44,12 @@
         <section class="pagination-container width-30 margin-top-4">
             {% if articles.has_previous %}
                 <a class="width-30 align-right-side" href="?page={{ articles.previous_page_number }}">
-                    <img class="width-40" src="/static/images/pag_left_arrow.svg">
+                    <img
+                            class="width-40 prevent-selection-img"
+                            src="/static/images/pag_left_arrow.svg"
+                            alt="previous page"
+                            draggable="false"
+                    >
                 </a>
             {% endif %}
             <span class="width-10 align-centered black-border border-radius-10 black-background pagination-span padding-top-bottom-05vw">
@@ -43,7 +57,12 @@
             </span>
             {% if articles.has_next %}
                 <a class="width-30 align-left-side" href="?page={{ articles.next_page_number }}">
-                    <img class="width-40" src="/static/images/pag_right_arrow.svg">
+                    <img
+                            class="width-40 prevent-selection-img"
+                            src="/static/images/pag_right_arrow.svg"
+                            alt="next page"
+                            draggable="false"
+                    >
                 </a>
             {% endif %}
         </section>

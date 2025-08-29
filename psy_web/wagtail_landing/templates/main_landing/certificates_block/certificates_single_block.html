@@ -1,6 +1,11 @@
 <section class="certificate-single-div border-radius-20 column-centered">
     <section class="clock-text-div">
-        <img class="clock-text-div__img" src="{{ block.certificate_image_svg }}">
+        <img
+                class="clock-text-div__img prevent-selection-img"
+                src="{{ block.certificate_image_svg }}"
+                alt="Clock image"
+                draggable="false"
+        >
         <p class="clock-text-div__p">
             {{ block.timing }}
         </p>
