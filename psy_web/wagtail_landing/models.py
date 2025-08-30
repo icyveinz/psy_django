@@ -137,7 +137,7 @@ class StudyResultsCard(Orderable, ClusterableModel):
         FieldPanel('course_title'),
         FieldPanel('course_platform'),
         FieldPanel('year_ended'),
-        InlinePanel('study_results_li', label='Study Results Cards', max_num=3)
+        InlinePanel('study_results_li', label='Study Results Cards', max_num=4)
     ]
 
 class StudyResultsLink(Orderable):
