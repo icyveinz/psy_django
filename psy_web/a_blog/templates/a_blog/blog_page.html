@@ -7,11 +7,13 @@
         <div class="blog-grid">
             {% for article in articles %}
                 <div>
-                    <img class="blog-article-image border-radius-25 prevent-selection-img"
-                         draggable="false"
-                         src="{{ article.specific.image.file.url }}"
-                         alt="{{ article.specific.image.title }}"
-                    >
+                    <div class="max-width overflow-hidden border-radius-25">
+                        <img class="blog-article-image scale-animation-img prevent-selection-img"
+                             draggable="false"
+                             src="{{ article.specific.image.file.url }}"
+                             alt="{{ article.specific.image.title }}"
+                        >
+                    </div>
                     <div class="grid-title-container">
                         <h2 class="blog-grid-text__header">
                             {{ article.title }}

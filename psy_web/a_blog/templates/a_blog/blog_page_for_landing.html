@@ -9,12 +9,14 @@
     <div class="blog-grid margin-top-2">
         {% for article in articles.all %}
             <div>
-                <img
-                        class="blog-article-image border-radius-25 prevent-selection-img"
+                <div class="max-width overflow-hidden border-radius-25">
+                    <img
+                        class="blog-article-image scale-animation-img prevent-selection-img"
                         src="{{ article.specific.image.file.url }}"
                         alt="{{ article.specific.image.title }}"
                         draggable="false"
-                >
+                    >
+                </div>
                 <div class="grid-title-container">
                     <h2 class="blog-grid-text__header">
                         {{ article.title }}
