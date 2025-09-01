@@ -1,6 +1,7 @@
 from datetime import date
 
 from django.core.paginator import Paginator
+from django.shortcuts import redirect
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import RichTextField
 from wagtail.models import Page
@@ -10,7 +11,8 @@ from users.models import AuthorProfile
 
 
 class MyWebSite(Page):
-    pass
+    def serve(self, request, *args, **kwargs):
+        return redirect('/landings/main-landing/', permanent=False)
 
 # Create your models here.
 class BlogPage(Page):
