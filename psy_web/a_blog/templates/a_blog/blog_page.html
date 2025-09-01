@@ -3,7 +3,7 @@
 {% load wagtailcore_tags wagtailimages_tags ru_plural %}
 
 {% block content %}
-    <div class="max-width-90 margin-top-2 column-directive">
+    <div class="max-width-90 margin-top-2 column-directive min-height-70vw">
         <div class="blog-grid">
             {% for article in articles %}
                 <div>
@@ -41,7 +41,7 @@
                 </div>
             {% endfor %}
         </div>
-        <section class="pagination-container width-30 margin-top-4">
+        <section class="pagination-container width-30 margin-top-auto">
             {% if articles.has_previous %}
                 <a class="width-30 align-right-side" href="?page={{ articles.previous_page_number }}">
                     <img

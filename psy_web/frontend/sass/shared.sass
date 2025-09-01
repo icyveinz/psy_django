@@ -8,6 +8,20 @@
   font-weight: $weight
   font-size: #{$size}vw
 
+html, body
+  height: 100%
+  margin: 0
+  padding: 0
+
+main
+  flex: 1
+
+.min-height-max
+  min-height: 100%
+
+.min-height-70vw
+  min-height: 70vw
+
 .max-width-centered
   width: 100%
   display: flex
@@ -18,7 +32,7 @@
 .max-width-90
   width: 90%
   display: flex
-  justify-content: center
+  justify-content: flex-start
   align-items: center
 
 .column-directive
@@ -77,6 +91,9 @@
 .width-90
   width: 90%
 
+.margin-top-auto
+  margin-top: auto
+
 .zero-margin
   margin: 0
 
@@ -86,14 +103,14 @@
 .zero-margin-top
   margin-top: 0
 
+.margin-top-1
+  margin-top: 1%
+
 .margin-top-4
   margin-top: 4%
 
 .margin-top-2
   margin-top: 2%
-
-.margin-left-1
-  margin-left: 1%
 
 .margin-left-2
   margin-left: 2%
