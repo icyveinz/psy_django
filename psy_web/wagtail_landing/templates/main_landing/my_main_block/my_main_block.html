@@ -14,8 +14,16 @@
                     <h2 class="main-block-author-div__name-div__h2">{{ main_block.name }}</h2>
                     <h2 class="main-block-author-div__name-div__h2">{{ main_block.surname }}</h2>
                 </div>
+                <div class="main-block-quotes-div">
+                    <img
+                            class="max-width prevent-selection-img"
+                            src="/static/images/quotes.svg"
+                            draggable="false"
+                            alt="quotes"
+                    >
+                </div>
                 <div class="main-block-author-div__thoughts-div">
-                    <p class="main-block-author-div__thoughts-div__p">
+                    <p class="main-block-author-div__thoughts-div__p zero-margin-top">
                         {{ main_block.my_quote }}
                     </p>
                 </div>

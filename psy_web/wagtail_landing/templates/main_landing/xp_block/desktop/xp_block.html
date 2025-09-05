@@ -1,4 +1,4 @@
-<div class="max-width-90 column-directive">
+<div class="max-width-90 column-directive desktop-marker">
         <section class="shared-header-div margin-top-4" id="my-experience-anchor">
             <h2 class="shared-header-div__header">
                 Многолетний опыт
@@ -15,7 +15,7 @@
                     Более {{ xp_block.hours_of_studying }} часов обучения
                 </p>
             </section>
-            {% include "main_landing/xp_block/xp_certificates_card.html" %}
+            {% include "main_landing/xp_block/desktop/xp_certificates_card.html" %}
             <section class="xp-about-me-div weak-blue-background border-radius-20">
                 <h3 class="xp-about-me-div__header">
                     Несколько фактов обо мне
@@ -30,11 +30,14 @@
                 </div>
                 <ul>
                     {% for li in xp_block.facts_pieces.all %}
-                        {% include "main_landing/xp_block/xp_li.html" %}
+                        {% include "main_landing/xp_block/desktop/xp_li.html" %}
                     {% endfor %}
                 </ul>
             </section>
             <section class="xp-quote-div">
+                <div class="xp-quote-svg">
+                    <img class="max-width" src="/static/images/quotes.svg">
+                </div>
                 <p class="xp-quote-div__p">«{{ xp_block.my_quote }}»</p>
             </section>
         </section>

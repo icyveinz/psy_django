@@ -1,0 +1,35 @@
+<div class="max-width-90 column-directive mobile-marker">
+    <section class="shared-header-div margin-top-4">
+        <h2 class="shared-header-div__header">
+            Многолетний опыт
+        </h2>
+    </section>
+    <section class="xp-mobile-flex max-width">
+        {% include "main_landing/xp_block/desktop/xp_certificates_card.html" %}
+        <section class="xp-about-me-mobile weak-blue-background border-radius-20 max-width margin-top-4">
+            <div class="about-me-logo-header-mobile margin-top-4">
+                <img class="width-15 circle-img" src="{{ xp_block.profile_facts_picture.file.url }}">
+                <h3 class="about-me-header-mobile">
+                    Несколько фактов обо мне
+                </h3>
+            </div>
+            <ul class="about-me-mobile-ul-grid">
+                {% for li in xp_block.facts_pieces.all %}
+                    {% include "main_landing/xp_block/mobile/xp_li.html" %}
+                {% endfor %}
+            </ul>
+        </section>
+        <section class="hours-container">
+            <p class="hours-container__p border-radius-20 black-border">
+                Более {{ xp_block.hours_with_clients }} часов с клиентами
+            </p>
+            <p class="hours-container__p border-radius-20 black-border">
+                Более {{ xp_block.hours_of_studying }} часов обучения
+            </p>
+        </section>
+        <div class="xp-quote-svg">
+            <img class="max-width" src="/static/images/quotes.svg">
+        </div>
+        <p class="mobile-quote-p">«{{ xp_block.my_quote }}»</p>
+    </section>
+</div>

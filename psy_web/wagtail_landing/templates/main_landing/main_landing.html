@@ -8,11 +8,13 @@
 {% block body %}
 <div class="max-width-centered min-height-max">
     {% include "main_landing/menu/menu.html" %}
+    {% include "main_landing/menu/mobile_menu.html" %}
     <main class="max-width-centered">
         {% include "main_landing/my_main_block/my_main_block.html" with main_block=page.name_blocks.first %}
         {% include "main_landing/services_block/services_block.html" with services_block=page.services_blocks %}
         {% include "main_landing/certificates_block/certificates_block.html" with certificates_block=page.certificates_blocks %}
-        {% include "main_landing/xp_block/xp_block.html" with xp_block=page.experience_blocks.first %}
+        {% include "main_landing/xp_block/desktop/xp_block.html" with xp_block=page.experience_blocks.first %}
+        {% include "main_landing/xp_block/mobile/xp_block.html" with xp_block=page.experience_blocks.first %}
         {% include "a_blog/blog_page_for_landing.html" with articles=articles %}
     </main>
     {% include "main_landing/appointment_block/appointment_block.html" with appointment_block=page.appointment_blocks.first %}

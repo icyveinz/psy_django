@@ -1,0 +1,126 @@
+@mixin font_preset_important($weight, $size)
+  font-family: 'M PLUS Rounded 1c', sans-serif !important
+  font-weight: $weight !important
+  font-size: #{$size}vw !important
+
+@media (min-width: 750px)
+  #top-page-mobile
+    display: none
+  #top-page
+    display: flex
+  .mobile-marker
+    display: none
+  .desktop-marker
+    display: block
+
+
+@media (max-width: 750px)
+  #top-page-mobile
+    display: flex
+  #top-page
+    display: none
+
+  .my-main-block-div
+    margin-top: 6%
+    flex-direction: column
+  .main-block-image-div
+    width: 100%
+  .main-block-image-div__img
+    display: block
+  .main-block-about-div
+    width: 100%
+    position: relative
+    margin-top: -50px
+    z-index: 1
+  .main-block-author-div__name-div
+    margin-top: 2%
+  .main-block-author-div__name-div__h2
+    font-size: 5vw
+  .main-block-author-div__thoughts-div__p
+    font-size: 3.5vw
+
+  .main-block-hours-div
+    display: none
+  .main-block-education-div
+    width: 100%
+  .main-block-education-div__title
+    font-size: 5vw
+  .main-block-education-div__entities
+    font-size: 4vw
+
+  .shared-header-div__header
+    font-size: 6vw
+  .services-card-grid
+    grid-template-columns: 1fr
+    grid-template-rows: repeat(4, 1fr)
+  .services-single-card-div__title-div__h3
+    font-size: 4vw
+  .services-single-card-div__services-ul__li__p
+    font-size: 3vw
+  .services-single-card-div__services-ul__li__img
+    width: 10%
+  .shared-header-div__p
+    font-size: 3vw
+  .certificates-card-grid
+    grid-template-columns: 1fr
+    grid-template-rows: repeat(3, 1fr)
+  .clock-text-div
+    align-items: center
+  .clock-text-div__p
+    font-size: 3vw
+  .clock-text-div__img
+    width: 8%
+  .certificate-header-div__header
+    font-size: 5vw
+  .certificate-li-div__p-medium
+    font-size: 3vw
+    display: flex
+    align-items: center
+  .certificate-li-div__p-bold
+    font-size: 3.5vw
+
+  .xp-docs-single-div__header
+    font-size: 4vw
+  .arrows-sizer
+    width: 25%
+  .xp-docs-single-div__p
+    font-size: 3vw
+  .xp-quote-svg
+    width: 10%
+    display: flex
+    align-items: center
+    justify-content: flex-start
+  .xp-docs-header-arrows-div
+    gap: 20vw
+
+
+  .appointment-div__50-flex-div
+    width: 100%
+  .appointment-div__50-flex-div__header
+    font-size: 5vw
+  .black-text-container__span
+    font-size: 3vw
+  .appointment-div__50-flex-div__p
+    font-size: 3vw
+  .p-user-agreement
+    font-size: 2.7vw
+  .appointment-hrefs-grid
+    width: 100%
+  .padding-top-bottom-08vw
+    padding: 2vw 0 2vw 0
+  .icon-width
+    width: 35%
+  .appointment-div-container
+    margin: 4%
+    width: 100%
+  .appointment-align-center-split
+    flex-direction: column
+    justify-content: center
+
+  .qxCTlb
+    @include font_preset_important(400, 4.2)
+
+  .mobile-marker
+    display: block
+  .desktop-marker
+    display: none

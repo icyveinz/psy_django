@@ -1,0 +1,238 @@
+html
+  box-sizing: border-box
+  height: 100%
+
+
+*,
+*::after,
+*::before
+  box-sizing: inherit
+
+.menu
+  list-style-type: none
+
+
+//body
+//  display: flex
+//  flex-direction: column
+//  font-family: "Roboto", sans-serif
+//  font-size: 16px
+//  line-height: 1.2
+//  height: 100%
+
+
+.container
+  width: 100%
+  max-width: 1000px !important
+  margin: 0 auto
+  //height: 100%
+  padding: 0 15px
+
+
+.navbar
+  //position: fixed
+  //left: 0
+  //top: 0
+  width: 100%
+  background: #000000
+
+
+.navbar__wrap
+  display: flex
+  justify-content: space-between
+  width: 100%
+//height: 100%
+
+
+.hamb
+  display: none
+
+
+.popup
+  display: none
+
+
+.logo
+  text-decoration: none
+  color: #fff
+  font-size: 20px
+  font-weight: bold
+  text-transform: uppercase
+  display: flex
+  align-items: center
+
+
+.menu > li > a
+  text-decoration: none
+
+
+.navbar__wrap .menu
+  display: flex
+
+
+.navbar__wrap .menu > li
+  display: flex
+//align-items: stretch
+
+
+.navbar__wrap .menu > li > a
+  display: flex
+  align-items: center
+  padding: 0 20px
+  color: rgba(255, 255, 255, 0.7)
+
+
+.navbar__wrap .menu > li > a:hover
+  color: rgba(255, 255, 255, 1)
+
+
+@media (max-width: 1000px)
+.navbar__wrap .menu
+  display: none
+
+
+.hamb
+  display: flex
+  align-items: center
+
+
+.hamb__field
+  padding: 10px 20px
+  cursor: pointer
+
+
+.bar
+  display: block
+  width: 30px
+  height: 3px
+  margin: 6px auto
+  background-color: #fff
+  transition: 0.2s
+
+
+.popup
+  position: fixed
+  left: -100%
+  width: 100%
+  height: 100%
+  background-color: #fff
+  z-index: 100
+  display: flex
+  transition: 0.3s
+
+
+.popup.open
+  left: 0
+
+
+.popup .menu
+  width: 100%
+  height: 100%
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: start
+  padding: 0 0
+  overflow: auto
+
+
+.popup .menu > li
+  width: 100%
+
+
+.popup .menu > li > a
+  width: 100%
+  display: flex
+  justify-content: center
+  padding: 20px 0
+  font-size: 6vw
+  font-weight: bold
+  color: black
+
+
+.popup .menu > li > a:hover
+  background-color: rgba(122, 82, 179, 0.1)
+
+
+.hamb__field.active .bar:nth-child(2)
+  opacity: 0
+
+
+.hamb__field.active .bar:nth-child(1)
+  transform: translateY(9px) rotate(45deg)
+
+
+.hamb__field.active .bar:nth-child(3)
+  transform: translateY(-9px) rotate(-45deg)
+
+
+body.noscroll
+  overflow: hidden
+
+.logo-holder-test
+  display: flex
+  width: 15%
+  align-items: center
+  justify-content: center
+
+.test-logo
+  width: 50%
+  height: auto
+
+.tg-link-holder-grid
+  display: grid
+  grid-template-columns: repeat(1, 1fr)
+  grid-template-rows: repeat(3, 1fr)
+  &__flex
+    grid-column: 1 / 1
+    grid-row: 2 / 2
+    display: flex
+    justify-content: center
+    align-items: center
+
+.logo-link-holder-flex
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  cursor: pointer
+  &__img
+    width: 25%
+    height: auto
+    filter: brightness(0) saturate(100%) invert(57%) sepia(68%) saturate(688%) hue-rotate(167deg) brightness(92%) contrast(90%)
+  &__a
+    color: #000000
+    font-size: 6vw
+    font-family: bluecurve-regular
+    text-decoration: none
+    filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(343deg) brightness(96%) contrast(102%)
+
+
+@media (max-width: 435px)
+  .popup
+    top: 70px
+
+
+@media (max-width: 350px)
+  .bar
+    width: 20px
+    height: 2px
+    margin: 4px auto
+  .popup
+    top: 60px
+  .hamb__field.active .bar:nth-child(1)
+    transform: translateY(5.6px) rotate(45deg)
+  .hamb__field.active .bar:nth-child(3)
+    transform: translateY(-5.6px) rotate(-45deg)
+
+@media (max-width: 280px)
+  .bar
+    width: 15px
+    height: 1.5px
+    margin: 2px auto
+  .popup
+    top: 50px
+  .hamb__field.active .bar:nth-child(1)
+    transform: translateY(3.5px) rotate(45deg)
+  .hamb__field.active .bar:nth-child(3)
+    transform: translateY(-3.5px) rotate(-45deg)

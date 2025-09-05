@@ -3,7 +3,10 @@ const path = require("path");
 module.exports = {
     mode: "production",
     entry: {
-        main_landing: "./js/main_landing/course_fetcher.js"
+        main_landing: [
+            "./js/main_landing/course_fetcher.js",
+            "./js/main_landing/burger_menu.js"
+        ]
     },
     output: {
         filename: '[name]/bundled_[name].js', // <-- this creates subfolder `testing/`
