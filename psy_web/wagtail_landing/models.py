@@ -19,7 +19,6 @@ class LandingMainPage(Page):
         InlinePanel('services_blocks', label='Services Blocks'),
         InlinePanel('certificates_blocks', label='Certificates Blocks'),
         InlinePanel('experience_blocks', label='Experience Blocks'),
-        InlinePanel('appointment_blocks', label='Appointment Blocks')
     ]
 
     template = "main_landing/main_landing.html"
@@ -141,55 +140,3 @@ class StudyResultsCard(Orderable, ClusterableModel):
 class StudyResultsLink(Orderable):
     page = ParentalKey(StudyResultsCard, on_delete=models.CASCADE, related_name='study_results_li')
     skills_achieved = models.CharField(max_length=200)
-
-
-# -------------------- AppointmentBlock --------------------
-class AppointmentBlock(Orderable, ClusterableModel):
-    page = ParentalKey(LandingMainPage, on_delete=models.CASCADE, related_name='appointment_blocks')
-    my_message = models.CharField(max_length=250)
-
-    panels = [
-        FieldPanel('my_message'),
-        InlinePanel('social_squares', label='Social Squares'),
-        InlinePanel('docs', label='Documents')
-    ]
-
-class AppointmentSocialSquare(Orderable):
-    appointment_block = ParentalKey(AppointmentBlock, on_delete=models.CASCADE, related_name='social_squares')
-    alt_image_name = models.CharField(max_length=20)
-    image = models.CharField(max_length=200)
-    link_to_social = models.CharField(max_length=200)
-
-    panels = [
-        FieldPanel('alt_image_name'),
-        FieldPanel('image'),
-        FieldPanel('link_to_social'),
-    ]
-
-class AppointmentDocs(Orderable):
-    appointment_block = ParentalKey(AppointmentBlock, on_delete=models.CASCADE, related_name='docs')
-
-    offer_page = models.ForeignKey(
-        'wagtailcore.Page',
-        null=True, blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-    confidential_page = models.ForeignKey(
-        'wagtailcore.Page',
-        null=True, blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-    user_agreement_page = models.ForeignKey(
-        'wagtailcore.Page',
-        null=True, blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-
-    panels = [
-        PageChooserPanel('offer_page'),
-        PageChooserPanel('confidential_page'),
-        PageChooserPanel('user_agreement_page'),
-    ]

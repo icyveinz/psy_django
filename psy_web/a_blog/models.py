@@ -35,14 +35,6 @@ class BlogPage(Page):
         page_obj = paginator.get_page(page_number)
         context['articles'] = page_obj
 
-        # --- Appointment блоки ---
-        landing = LandingMainPage.objects.first()
-        if landing:
-            appointment_blocks = landing.appointment_blocks.all().prefetch_related(
-                'social_squares', 'docs'
-            )
-            context['appointment_blocks'] = appointment_blocks
-
         return context
 
 class ArticlePage(Page):
@@ -70,16 +62,6 @@ class ArticlePage(Page):
         from wagtail_landing.models import LandingMainPage
 
         context = super().get_context(request, *args, **kwargs)
-
-        # Получаем уникальные данные для этой страницы
-        landing = LandingMainPage.objects.first()
-        if landing:
-            appointment_blocks = landing.appointment_blocks.all().prefetch_related(
-                'social_squares', 'docs'
-            )
-            context['appointment_blocks'] = appointment_blocks
-
-        # Если нужен автор
         context['author'] = AuthorProfile.objects.first()
 
         return context
