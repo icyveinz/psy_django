@@ -16,6 +16,7 @@ python manage.py makemigrations wagtail_landing
 python manage.py makemigrations a_blog
 python manage.py makemigrations my_docs
 python manage.py makemigrations users
+python manage.py makemigrations core
 python manage.py migrate
 
 # Create superuser if it doesn't exist

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% block title %}My blog page{% endblock %}
+{% load fetch_appointment_footer %}
+{% block title %}{{ page.landing_title }}{% endblock %}
 {% block assets %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
@@ -13,8 +14,6 @@
         {% block content %}
         {% endblock %}
     </main>
-    {% if appointment_blocks %}
-        {% include "main_landing/appointment_block/appointment_block.html" with appointment_block=appointment_blocks|first %}
-    {% endif %}
+    {% fetch_appointment_footer %}
 </div>
 {% endblock %}

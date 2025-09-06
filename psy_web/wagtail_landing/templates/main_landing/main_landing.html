@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load fetch_appointment_footer %}
 {% block title %}{{ page.landing_title }}{% endblock %}
 {% block assets %}
     {% load static %}
@@ -17,6 +18,6 @@
         {% include "main_landing/xp_block/mobile/xp_block.html" with xp_block=page.experience_blocks.first %}
         {% include "a_blog/blog_page_for_landing.html" with articles=articles %}
     </main>
-    {% include "main_landing/appointment_block/appointment_block.html" with appointment_block=page.appointment_blocks.first %}
+    {% fetch_appointment_footer %}
 </div>
 {% endblock %}

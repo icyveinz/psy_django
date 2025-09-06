@@ -9,7 +9,10 @@ module.exports = {
         ],
         blog: [
             "./js/main_landing/burger_menu.js"
-        ]
+        ],
+        docs: [
+            "./js/main_landing/burger_menu.js"
+        ],
     },
     output: {
         filename: '[name]/bundled_[name].js', // <-- this creates subfolder `testing/`
