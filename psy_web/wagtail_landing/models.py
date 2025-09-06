@@ -27,8 +27,6 @@ class LandingMainPage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context['landing_title'] = self.landing_title
-        context['landing_page'] = LandingMainPage.objects.first()
-        context['blog'] = BlogPage.objects.first()
 
         # Получаем статьи так же, как в BlogPage.get_context
         articles = ArticlePage.objects.live().order_by('-first_published_at')

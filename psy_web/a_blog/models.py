@@ -1,5 +1,4 @@
 from datetime import date
-
 from django.core.paginator import Paginator
 from django.shortcuts import redirect
 from wagtail.admin.panels import FieldPanel
@@ -36,19 +35,13 @@ class BlogPage(Page):
         page_obj = paginator.get_page(page_number)
         context['articles'] = page_obj
 
-        # --- Главная лендинг страница ---
-        landing = LandingMainPage.objects.first()
-        context['landing_page'] = landing
-
         # --- Appointment блоки ---
+        landing = LandingMainPage.objects.first()
         if landing:
             appointment_blocks = landing.appointment_blocks.all().prefetch_related(
                 'social_squares', 'docs'
             )
             context['appointment_blocks'] = appointment_blocks
-
-        # --- Ссылка на блог ---
-        context['blog'] = BlogPage.objects.first()
 
         return context
 
@@ -77,14 +70,16 @@ class ArticlePage(Page):
         from wagtail_landing.models import LandingMainPage
 
         context = super().get_context(request, *args, **kwargs)
+
+        # Получаем уникальные данные для этой страницы
         landing = LandingMainPage.objects.first()
-        context['blog'] = BlogPage.objects.first()
-        context['author'] = AuthorProfile.objects.first()
         if landing:
             appointment_blocks = landing.appointment_blocks.all().prefetch_related(
                 'social_squares', 'docs'
             )
-            context['landing_page'] = LandingMainPage.objects.first()
             context['appointment_blocks'] = appointment_blocks
+
+        # Если нужен автор
+        context['author'] = AuthorProfile.objects.first()
 
         return context
