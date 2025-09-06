@@ -3,7 +3,7 @@
 {% load wagtailcore_tags ru_plural %}
 
 {% block content %}
-    <div class="width-90 margin-top-2">
+    <div class="width-90 article-page-div">
         <img
                 class="max-width img-16-9-cover border-radius-25 prevent-selection-img"
                 draggable="false"
@@ -21,7 +21,7 @@
         </p>
         <div class="author-div max-width">
             <img
-                    class="circle-img width-8 img-square-cover prevent-selection-img"
+                    class="circle-img author-image img-square-cover prevent-selection-img"
                     src="{{ author.profile_image.file.url }}"
                     alt=""
                     draggable="false">
@@ -36,9 +36,11 @@
         </div>
         <p>{{ page.body|richtext }}</p>
     </div>
-    <section class="shared-black-button border-radius-10 margin-top-2">
-        <a class="shared-black-button__a padding-top-bottom-05vw" href="{{ page.get_parent.url }}">
-            Вернуться
-        </a>
-    </section>
+    <div class="max-width-90 column-directive">
+        <section class="shared-black-button border-radius-10 margin-top-2">
+            <a class="shared-black-button__a padding-top-bottom-05vw" href="{{ page.get_parent.url }}">
+                Вернуться
+            </a>
+        </section>
+    </div>
 {% endblock %}

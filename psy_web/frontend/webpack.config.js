@@ -6,6 +6,9 @@ module.exports = {
         main_landing: [
             "./js/main_landing/course_fetcher.js",
             "./js/main_landing/burger_menu.js"
+        ],
+        blog: [
+            "./js/main_landing/burger_menu.js"
         ]
     },
     output: {
