@@ -3,9 +3,15 @@ const path = require("path");
 module.exports = {
     mode: "production",
     entry: {
+        libraries : [
+            "./js/libraries/gsap.min.js",
+            "./js/libraries/ScrollTrigger.min.js",
+        ],
         main_landing: [
             "./js/main_landing/course_fetcher.js",
-            "./js/main_landing/burger_menu.js"
+            "./js/main_landing/burger_menu.js",
+            "./js/main_landing/certificates_animation.js",
+            "./js/main_landing/services_animation.js"
         ],
         blog: [
             "./js/main_landing/burger_menu.js"
