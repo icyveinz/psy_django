@@ -1,5 +1,6 @@
+import {move_from_the_left} from "./landing_animation_template";
 
-document.addEventListener("DOMContentLoaded", function () {
+function certificates_animation_both() {
     const trigger_node = document.querySelector('.certificates-card-grid');
     const timeline = gsap.timeline({
         scrollTrigger: {
@@ -14,10 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .querySelectorAll('.certificate-single-div')
         .forEach((layout, index) => {
             timeline
-                .from(layout, {
-                    opacity: 0,
-                    xPercent: -50,
-                    transform: 'scale(0)'
-                })
+                .from(layout, move_from_the_left())
         })
-});
+}
+
+export default certificates_animation_both;

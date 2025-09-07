@@ -1,5 +1,6 @@
+import {move_from_the_top} from "./landing_animation_template";
 
-document.addEventListener("DOMContentLoaded", function () {
+function services_animation_both() {
     const trigger_node = document.querySelector('.services-card-grid');
     const timeline = gsap.timeline({
         scrollTrigger: {
@@ -14,10 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .querySelectorAll('.services-single-card-div')
         .forEach((layout, index) => {
             timeline
-                .from(layout, {
-                    opacity: 0,
-                    yPercent: -50,
-                    transform: 'scale(0)'
-                })
+                .from(layout, move_from_the_top())
         })
-});
+}
+
+export default services_animation_both;

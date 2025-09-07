@@ -4,6 +4,7 @@
 {% block assets %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+    <script defer src="{% static 'js/libraries/bundled_libraries.js' %}"></script>
     <script defer src="{% static 'js/blog/bundled_blog.js' %}"></script>
 {% endblock %}
 {% block body %}

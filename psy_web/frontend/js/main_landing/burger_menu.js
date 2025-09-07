@@ -34,12 +34,4 @@ document.addEventListener("DOMContentLoaded", function () {
         hamb.classList.remove("active");
         body.classList.remove("noscroll");
     }
-
-    // Клик по контейнеру с логотипом → переход в Telegram
-    const logoLink = document.querySelector(".logo-link-holder-flex");
-    if (logoLink) {
-        logoLink.addEventListener("click", function () {
-            window.location.href = "https://t.me/ugo_bar";
-        });
-    }
 });

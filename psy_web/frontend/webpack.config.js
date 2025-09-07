@@ -1,20 +1,41 @@
 const path = require("path");
+const TerserPlugin = require('terser-webpack-plugin'); // For minifying and removing comments
 
 module.exports = {
     mode: "production",
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: {
+                    format: {
+                        comments: false
+                    }
+                }
+            })
+        ]
+    },
     entry: {
         libraries : [
             "./js/libraries/gsap.min.js",
             "./js/libraries/ScrollTrigger.min.js",
         ],
         main_landing: [
-            "./js/main_landing/course_fetcher.js",
+            "./js/blog/blog_animation_landing.js",
             "./js/main_landing/burger_menu.js",
-            "./js/main_landing/certificates_animation.js",
-            "./js/main_landing/services_animation.js"
+            "./js/main_landing/gsap/certificates_animation_both.js",
+            "./js/main_landing/course_fetcher.js",
+            "./js/main_landing/gsap/landing_animation_media.js",
+            "./js/main_landing/gsap/landing_animation_template.js",
+            "./js/main_landing/gsap/services_animation_both.js",
+            "./js/main_landing/gsap/xp_animation_desktop.js",
+            "./js/main_landing/gsap/xp_animation_mobile.js",
         ],
         blog: [
-            "./js/main_landing/burger_menu.js"
+            "./js/main_landing/burger_menu.js",
+            "./js/blog/blog_animation_landing.js",
+            "./js/blog/blog_animation_media.js",
+            "./js/blog/blog_animation_static.js"
         ],
         docs: [
             "./js/main_landing/burger_menu.js"
