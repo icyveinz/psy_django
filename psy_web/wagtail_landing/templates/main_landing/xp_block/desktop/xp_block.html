@@ -1,3 +1,4 @@
+{% load responsive_images %}
 <div class="max-width-90 column-directive desktop-marker">
         <section class="shared-header-div margin-top-4" id="my-experience-anchor">
             <h2 class="shared-header-div__header">
@@ -21,12 +22,7 @@
                     Несколько фактов обо мне
                 </h3>
                 <div class="xp-about-me-div__img border-radius-20 overflow-hidden">
-                    <img
-                        class="scale-animation-img max-width prevent-selection-img"
-                        src="{{ xp_block.profile_facts_picture.file.url }}"
-                        alt="Author image"
-                        draggable="false"
-                    >
+                    {% responsive_image xp_block.profile_facts_picture classes="scale-animation-img max-width prevent-selection-img" %}
                 </div>
                 <ul>
                     {% for li in xp_block.facts_pieces.all %}

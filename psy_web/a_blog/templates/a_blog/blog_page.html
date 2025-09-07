@@ -1,6 +1,6 @@
 {% extends 'a_blog/blog_layout.html' %}
 
-{% load wagtailcore_tags wagtailimages_tags ru_plural %}
+{% load wagtailcore_tags wagtailimages_tags ru_plural responsive_images %}
 
 {% block content %}
     <div class="max-width-90 margin-top-2 column-directive min-height-70vw">
@@ -8,11 +8,7 @@
             {% for article in articles %}
                 <div>
                     <div class="max-width overflow-hidden border-radius-25">
-                        <img class="blog-article-image scale-animation-img prevent-selection-img"
-                             draggable="false"
-                             src="{{ article.specific.image.file.url }}"
-                             alt="{{ article.specific.image.title }}"
-                        >
+                        {% responsive_image article.specific.image classes="blog-article-image scale-animation-img prevent-selection-img" %}
                     </div>
                     <div class="grid-title-container">
                         <h2 class="blog-grid-text__header">
@@ -45,29 +41,5 @@
         </div>
     </div>
     <div class="margin-top-4"></div>
-    <section class="pagination-container margin-top-auto">
-        {% if articles.has_previous %}
-            <a class="pagination-a-container align-right-side" href="?page={{ articles.previous_page_number }}">
-                <img
-                        class="width-40 prevent-selection-img"
-                        src="/static/images/pag_left_arrow.svg"
-                        alt="previous page"
-                        draggable="false"
-                >
-            </a>
-        {% endif %}
-        <span class="align-centered black-border border-radius-10 black-background pagination-span padding-top-bottom-05vw">
-            {{ articles.number }}
-        </span>
-        {% if articles.has_next %}
-            <a class="pagination-a-container align-left-side" href="?page={{ articles.next_page_number }}">
-                <img
-                        class="width-40 prevent-selection-img"
-                        src="/static/images/pag_right_arrow.svg"
-                        alt="next page"
-                        draggable="false"
-                >
-            </a>
-        {% endif %}
-    </section>
+    {% include "a_blog/blog_pagination.html" with articles=articles %}
 {% endblock %}

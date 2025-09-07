@@ -1,4 +1,4 @@
-{% load wagtailcore_tags ru_plural %}
+{% load wagtailcore_tags ru_plural responsive_images %}
 
 <div class="max-width-90 column-directive margin-top-2">
     <section class="shared-header-div margin-top-4">
@@ -10,12 +10,7 @@
         {% for article in articles.all %}
             <div>
                 <div class="max-width overflow-hidden border-radius-25">
-                    <img
-                        class="blog-article-image scale-animation-img prevent-selection-img"
-                        src="{{ article.specific.image.file.url }}"
-                        alt="{{ article.specific.image.title }}"
-                        draggable="false"
-                    >
+                    {% responsive_image article.specific.image classes="blog-article-image scale-animation-img prevent-selection-img" %}
                 </div>
                 <div class="grid-title-container">
                     <h2 class="blog-grid-text__header">

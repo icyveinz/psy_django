@@ -1,15 +1,10 @@
 {% extends 'a_blog/blog_layout.html' %}
 
-{% load wagtailcore_tags ru_plural %}
+{% load wagtailcore_tags ru_plural responsive_images %}
 
 {% block content %}
     <div class="width-90 article-page-div">
-        <img
-                class="max-width img-16-9-cover border-radius-25 prevent-selection-img"
-                draggable="false"
-                src="{{ page.specific.image.file.url }}"
-                alt="{{ page.specific.image.title }}"
-        >
+        {% responsive_image page.specific.image classes="max-width img-16-9-cover border-radius-25 prevent-selection-img" %}
         <p class="article-page-p-font">
             {{ page.time_to_read }} {{ page.time_to_read|ru_minute }} на чтение
         </p>
@@ -20,11 +15,7 @@
             {{ page.intro }}
         </p>
         <div class="author-div max-width">
-            <img
-                    class="circle-img author-image img-square-cover prevent-selection-img"
-                    src="{{ author.profile_image.file.url }}"
-                    alt=""
-                    draggable="false">
+            {% responsive_image author.profile_image classes="circle-img author-image img-square-cover prevent-selection-img" %}
             <div class="author-vertical-div margin-left-2">
                 <p class="article-page-p-font zero-margin">
                     Написал
