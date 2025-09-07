@@ -1,7 +1,7 @@
 @mixin font_preset($weight, $size)
   font-family: 'M PLUS Rounded 1c', sans-serif
   font-weight: $weight
-  font-size: #{$size}vw
+  font-size: #{$size}cqw
 
 .xp-grid
   display: grid
@@ -70,7 +70,7 @@
   align-items: flex-end
   &__p
     margin: 0 0 4% 4%
-    @include font_preset(700, 2)
+    @include font_preset(700, 2.3)
 
 .xp-docs-single-div
   grid-column: 3/7
@@ -81,16 +81,16 @@
   justify-content: flex-start
   &__header
     margin: 2% 0 0 3%
-    @include font_preset(700, 2)
+    @include font_preset(700, 2.1)
   &__p
     margin: 2% 0 0 3.5%
-    @include font_preset(400, 1.2)
+    @include font_preset(400, 1.4)
 
 .xp-docs-header-arrows-div
   display: flex
   flex-direction: row
   justify-content: flex-start
-  gap: 11.5vw
+  gap: 11.5cqw
 
 .arrows-container
   display: flex
@@ -110,13 +110,13 @@
   justify-content: flex-start
   &__header
     padding: 4% 0 4% 0
-    @include font_preset(700, 1.3)
+    @include font_preset(700, 1.5)
   &__img
     width: 90%
     height: 30%
     display: flex
   &__li
-    @include font_preset(400, 1.2)
+    @include font_preset(400, 1.33)
 
 .xp-quote-div
   grid-column: 1/7
@@ -127,4 +127,4 @@
   align-items: flex-start
   &__p
     font-style: italic
-    @include font_preset(400, 1.2)
+    @include font_preset(400, 1.5)

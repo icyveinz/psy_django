@@ -1,7 +1,7 @@
 @mixin font_preset($weight, $size)
   font-family: 'M PLUS Rounded 1c', sans-serif
   font-weight: $weight
-  font-size: #{$size}vw
+  font-size: #{$size}cqw
 
 .blog-grid
   display: grid
@@ -30,9 +30,9 @@
 .blog-grid-text
   &__header
     width: 70%
-    @include font_preset(700, 1.5)
+    @include font_preset(700, 1.8)
   &__p
-    @include font_preset(400, 1.2)
+    @include font_preset(400, 1.5)
 
 
 .blog-grid-text__p:nth-child(2),
