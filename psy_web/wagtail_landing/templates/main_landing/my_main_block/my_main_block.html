@@ -5,7 +5,7 @@
             {% responsive_image main_block.title_image classes="main-block-image-div__img scale-animation-img prevent-selection-img" %}
         </section>
         <section class="main-block-about-div">
-            <section class="main-block-author-div weak-blue-background border-radius-20">
+            <section class="main-block-author-div white-background black-border border-radius-20">
                 <div class="main-block-author-div__name-div">
                     <h2 class="main-block-author-div__name-div__h2">{{ main_block.name }}</h2>
                     <h2 class="main-block-author-div__name-div__h2">{{ main_block.surname }}</h2>
@@ -25,7 +25,7 @@
                 </div>
             </section>
             <section class="main-block-achievements-div">
-                <section class="main-block-education-div grey-background border-radius-20">
+                <section class="main-block-education-div black-border border-radius-20">
                     <h2 class="main-block-education-div__title">Образование</h2>
                     <ul class="main-block-education-div__ul">
                         {% for education in main_block.education_pieces.all %}
@@ -33,7 +33,7 @@
                         {% endfor %}
                     </ul>
                 </section>
-                <section class="main-block-hours-div blue-background border-radius-20">
+                <section class="main-block-hours-div black-border border-radius-20">
                     <section class="main-block-hours-div__aligner">
                         <h2 class="main-block-hours-div__aligner__hours">{{ main_block.hours }}+</h2>
                         <p class="main-block-hours-div__aligner__comments">часов с клиентами</p>
