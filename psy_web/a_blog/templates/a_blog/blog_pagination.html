@@ -3,7 +3,7 @@
         <a class="pagination-a-container align-right-side" href="?page={{ articles.previous_page_number }}">
             <img
                     class="width-40 prevent-selection-img"
-                    src="/static/images/pag_left_arrow.svg"
+                    src="{{ static_images.pagination_left_arrow_svg }}"
                     alt="previous page"
                     draggable="false"
             >
@@ -16,7 +16,7 @@
         <a class="pagination-a-container align-left-side" href="?page={{ articles.next_page_number }}">
             <img
                     class="width-40 prevent-selection-img"
-                    src="/static/images/pag_right_arrow.svg"
+                    src="{{ static_images.pagination_right_arrow_svg }}"
                     alt="next page"
                     draggable="false"
             >

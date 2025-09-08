@@ -68,11 +68,9 @@ class EducationPiece(Orderable):
 class ServicesBlock(Orderable, ClusterableModel):
     page = ParentalKey(LandingMainPage, on_delete=models.CASCADE, related_name='services_blocks')
     services_title = models.CharField(max_length=200)
-    left_image_svg = models.CharField(max_length=200)
 
     panels = [
         FieldPanel('services_title'),
-        FieldPanel('left_image_svg'),
         InlinePanel('services_pieces', label='Services Pieces')
     ]
 
@@ -89,14 +87,12 @@ class CertificatesBlock(Orderable):
     timing = models.CharField(max_length=50)
     online_pricing = models.CharField(max_length=30)
     actual_pricing = models.CharField(max_length=30)
-    certificate_image_svg = models.CharField(max_length=200)
 
     panels = [
         FieldPanel('certificate_title'),
         FieldPanel('timing'),
         FieldPanel('online_pricing'),
         FieldPanel('actual_pricing'),
-        FieldPanel('certificate_image_svg'),
     ]
 
 # -------------------- MyExperienceBlock --------------------

@@ -6,7 +6,7 @@ from wagtail.models import Orderable
 from wagtail.snippets.models import register_snippet
 
 
-# Create your models here.
+# Модель для создания повторяющегося меню снизу
 @register_snippet
 class AppointmentBlock(Orderable, ClusterableModel):
     my_message = models.CharField(max_length=250)
@@ -52,4 +52,29 @@ class AppointmentDocs(Orderable):
         PageChooserPanel('offer_page'),
         PageChooserPanel('confidential_page'),
         PageChooserPanel('user_agreement_page'),
+    ]
+
+# static_images
+@register_snippet
+class StaticImagesPath(Orderable):
+    quotes_svg = models.CharField(max_length=200)
+    top_right_arrow_svg = models.CharField(max_length=200)
+    four_pointed_black_star_svg = models.CharField(max_length=200)
+    certificate_image_svg = models.CharField(max_length=200)
+    right_arrow_thin_svg = models.CharField(max_length=200)
+    left_arrow_thin_svg = models.CharField(max_length=200)
+    right_arrow_blog_entity_svg = models.CharField(max_length=200)
+    pagination_left_arrow_svg = models.CharField(max_length=200)
+    pagination_right_arrow_svg = models.CharField(max_length=200)
+
+    panels = [
+        FieldPanel('quotes_svg'),
+        FieldPanel('top_right_arrow_svg'),
+        FieldPanel('four_pointed_black_star_svg'),
+        FieldPanel('certificate_image_svg'),
+        FieldPanel('right_arrow_thin_svg'),
+        FieldPanel('left_arrow_thin_svg'),
+        FieldPanel('right_arrow_blog_entity_svg'),
+        FieldPanel('pagination_left_arrow_svg'),
+        FieldPanel('pagination_right_arrow_svg')
     ]
