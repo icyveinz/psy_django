@@ -1,27 +1,27 @@
+import {move_from_the_top} from "./gsap/landing_animation_template";
+
 document.addEventListener("DOMContentLoaded", function() {
-    // Получаем все контейнеры
     const containers = document.querySelectorAll(".courses-container");
     let courses = [];
-    const indices = new Map(); // будем хранить текущий индекс для каждого контейнера
+    const indices = new Map();
 
-    // Загружаем данные один раз
     fetch('/wagtail_landing/api/study-results/')
         .then(response => response.json())
         .then(data => {
             courses = data;
 
-            // Заполняем все контейнеры данными
             containers.forEach(container => {
-                indices.set(container, 0); // индекс 0 для каждого контейнера
-                showCourse(container, 0);
+                indices.set(container, 0);
+                showCourse(container, 0); // первый курс без анимации
             });
         });
 
-    // Функция для отображения курса в конкретном контейнере
+    // Функция отображения курса с анимацией
     function showCourse(container, index) {
         if (!courses.length) return;
         const course = courses[index];
-        container.innerHTML = `
+
+        const htmlContent = `
             <h2 class="xp-docs-single-div__p">Курс: ${course.course_title}</h2>
             <p class="xp-docs-single-div__p">Платформа: ${course.course_platform}</p>
             <p class="xp-docs-single-div__p">Дата окончания: ${course.year_ended}</p>
@@ -30,30 +30,44 @@ document.addEventListener("DOMContentLoaded", function() {
                 ${course.study_results_li.map(item => `<li class="xp-docs-single-div__p">${item.skills_achieved}</li>`).join('')}
             </ul>
         `;
+
+        // Очищаем контейнер и вставляем новый контент сразу
+        container.innerHTML = htmlContent;
+
+        // Все элементы с классом для анимации
+        const items = container.querySelectorAll('.xp-docs-single-div__p');
+
+        // Сразу делаем начальное состояние
+        gsap.set(items, { opacity: 0, y: -20 });
+
+        // Timeline для последовательного появления
+        gsap.to(items, {
+            duration: 0.5,
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+            stagger: 0.1
+        });
     }
 
-    // Обработчик кликов на кнопки
+
+    // Кнопки переключения
     document.querySelectorAll(".prev-course, .next-course").forEach(button => {
         button.addEventListener("click", function() {
-            // Идём вверх по DOM до родительской секции
             const section = button.closest(".xp-docs-single-div");
             if (!section) return;
 
-            // Ищем контейнер внутри секции
             const container = section.querySelector(".courses-container");
             if (!container) return;
 
-            // Получаем текущий индекс
             let currentIndex = indices.get(container) || 0;
 
-            // Определяем направление
             if (button.classList.contains("prev-course")) {
                 currentIndex = (currentIndex - 1 + courses.length) % courses.length;
             } else {
                 currentIndex = (currentIndex + 1) % courses.length;
             }
 
-            // Сохраняем индекс и обновляем контейнер
             indices.set(container, currentIndex);
             showCourse(container, currentIndex);
         });
