@@ -25,7 +25,9 @@
                 </p>
             </div>
         </div>
-        <p>{{ page.body|richtext }}</p>
+        <div class="article-body max-width">
+            {{ page.body|richtext }}
+        </div>
     </div>
     <div class="max-width-90 column-directive">
         <section class="shared-black-button border-radius-10 margin-top-2">
