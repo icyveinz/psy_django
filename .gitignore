@@ -8,6 +8,11 @@
 /psy_web/frontend/node_modules
 /psy_web/frontend/package-lock.json
 
+/psy_web/a_blog/__pycache__/
+/psy_web/my_docs/__pycache__/
+/psy_web/users/__pycache__/
+/psy_web/wagtail_landing/__pycache__/
+
 # Зависимости
 /psy_web/requirements.txt
 
