@@ -19,3 +19,6 @@
 # Игнорировать все файлы в static кроме images
 /static/*
 !/static/images/
+!/static/images/**
+!/static/icons/
+!/static/icons/**
