@@ -37,12 +37,17 @@ module.exports = {
             "./js/main_landing/burger_menu.js",
             "./js/blog/blog_animation_landing.js",
             "./js/blog/blog_animation_media.js",
-            "./js/blog/blog_animation_static.js"
+            "./js/blog/blog_animation_static.js",
         ],
         docs: [
             "./js/main_landing/loader.js",
             "./js/main_landing/burger_menu.js"
         ],
+        article: [
+            "./js/main_landing/loader.js",
+            "./js/main_landing/burger_menu.js",
+            "./js/article/article_animation.js"
+        ]
     },
     output: {
         filename: '[name]/bundled_[name].js', // <-- this creates subfolder `testing/`

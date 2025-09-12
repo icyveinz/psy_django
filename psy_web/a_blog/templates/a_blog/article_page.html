@@ -2,9 +2,18 @@
 
 {% load wagtailcore_tags ru_plural responsive_images %}
 
+{% load static %}
+
+{% block scripts %}
+    <script defer src="{% static 'js/libraries/bundled_libraries.js' %}"></script>
+    <script defer src="{% static 'js/article/bundled_article.js' %}"></script>
+{% endblock %}
+
 {% block content %}
     <div class="width-90 article-page-div">
-        {% responsive_image page.specific.image classes="max-width img-16-9-cover border-radius-25 prevent-selection-img" %}
+        <div class="max-width image-reveal" style="overflow: hidden; display: inline-block">
+            {% responsive_image page.specific.image classes="max-width img-16-9-cover border-radius-25 prevent-selection-img" %}
+        </div>
         <p class="article-page-p-font">
             {{ page.time_to_read }} {{ page.time_to_read|ru_minute }} на чтение
         </p>

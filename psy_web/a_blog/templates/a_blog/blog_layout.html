@@ -3,8 +3,10 @@
 {% block assets %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
-    <script defer src="{% static 'js/libraries/bundled_libraries.js' %}"></script>
-    <script defer src="{% static 'js/blog/bundled_blog.js' %}"></script>
+
+    {% block scripts %}
+    {% endblock %}
+
 {% endblock %}
 {% block body %}
 <div class="max-width-centered min-height-max">

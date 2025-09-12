@@ -2,6 +2,13 @@
 
 {% load wagtailcore_tags wagtailimages_tags ru_plural responsive_images %}
 
+{% load static %}
+
+{% block scripts %}
+    <script defer src="{% static 'js/libraries/bundled_libraries.js' %}"></script>
+    <script defer src="{% static 'js/blog/bundled_blog.js' %}"></script>
+{% endblock %}
+
 {% block content %}
     <div class="max-width-90 margin-top-2 column-directive min-height-70vw">
         <div class="blog-grid">
