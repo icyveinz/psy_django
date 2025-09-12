@@ -1,0 +1,16 @@
+# Базы данных и медиа
+/db_data/
+/media/
+
+# IDE и виртуальное окружение
+/psy_web/.venv/
+/psy_web/.idea/
+/psy_web/frontend/node_modules
+/psy_web/frontend/package-lock.json
+
+# Зависимости
+/psy_web/requirements.txt
+
+# Игнорировать все файлы в static кроме images
+/static/*
+!/static/images/
