@@ -29,7 +29,13 @@
             </p>
         </section>
         <div class="xp-quote-svg">
-            <img class="max-width" src="{{ static_images.quotes_svg }}">
+            <img
+                    class="max-width prevent-selection-img"
+                    src="{{ static_images.quotes_svg }}"
+                    alt="quotes"
+                    loading="lazy"
+                    draggable="false"
+            >
         </div>
         <p class="mobile-quote-p">«{{ xp_block.my_quote }}»</p>
     </section>
