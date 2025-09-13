@@ -3,35 +3,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const popup = document.querySelector("#popup");
     const body = document.body;
 
-    // Клонируем меню для мобильной версии
-    const menu = document.querySelector("#menu").cloneNode(true);
-
-    // Обработчик на кнопку гамбургера
-    hamb.addEventListener("click", hambHandler);
-
-    function hambHandler(e) {
+    hamb.addEventListener("click", function(e) {
         e.preventDefault();
         popup.classList.toggle("open");
         hamb.classList.toggle("active");
         body.classList.toggle("noscroll");
-        renderPopup();
-    }
 
-    function renderPopup() {
-        if (!popup.contains(menu)) {
-            popup.appendChild(menu);
+        // Проверяем, есть ли меню в popup
+        let menuClone = popup.querySelector("#menu-clone");
+        if (!menuClone) {
+            menuClone = document.querySelector("#menu").cloneNode(true);
+            menuClone.id = "menu-clone";
+            popup.appendChild(menuClone);
+
+            // Навешиваем закрытие при клике на пункт
+            Array.from(menuClone.children).forEach(link => {
+                link.addEventListener("click", () => {
+                    popup.classList.remove("open");
+                    hamb.classList.remove("active");
+                    body.classList.remove("noscroll");
+                });
+            });
         }
-    }
-
-    // Закрытие меню при клике на пункт
-    const links = Array.from(menu.children);
-    links.forEach((link) => {
-        link.addEventListener("click", closeOnClick);
     });
-
-    function closeOnClick() {
-        popup.classList.remove("open");
-        hamb.classList.remove("active");
-        body.classList.remove("noscroll");
-    }
 });

@@ -27,3 +27,5 @@ async:
 gen:
 	cls
 	pip freeze > requirements.txt
+fix:
+	dos2unix entrypoint.sh
