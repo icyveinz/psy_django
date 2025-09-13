@@ -12,21 +12,10 @@
     <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
     <script async src="https://calendar.google.com/calendar/scheduling-button-script.js"></script>
-    <script>
-        (function() {
-            window.addEventListener('load', function() {
-                const containers = document.querySelectorAll('.google-appointment-marker');
-                containers.forEach(container => {
-                    calendar.schedulingButton.load({
-                        url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1W9G2l74hHM_SATkwB_vRevcybBl6OL5VyNKGMTFRpnnZWOJUphepK6DOmybdl0Lvu0yrp86Q2?gv=true',
-                        color: '#000000',
-                        label: "\u0417\u0430\u043F\u0438\u0441\u0430\u0442\u044C\u0441\u044F",
-                        target: container,
-                    });
-                })
-            });
-        })();
-    </script>
+
+    {% include "scripts/google_appointment_script.html" %}
+    {% include 'scripts/yandex_metrika.html' %}
+
     {% block assets %}
     {% endblock %}
 </head>
