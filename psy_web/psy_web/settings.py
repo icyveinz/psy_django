@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 
+import sentry_sdk
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -167,3 +169,8 @@ WAGTAIL_SITE_NAME = 'Blog example'
 WAGTAILADMIN_BASE_URL = 'http://example.com'
 
 WAGTAILDOCS_EXTENSIONS = ['csv', 'docx', 'key', 'odt', 'pdf', 'pptx', 'rtf', 'txt', 'xlsx', 'zip']
+
+sentry_sdk.init(
+    dsn="https://5f13f288abce7a7919e4185fc95ee26d@o4508960090750976.ingest.de.sentry.io/4510017534165072",
+    send_default_pii=True,
+)
