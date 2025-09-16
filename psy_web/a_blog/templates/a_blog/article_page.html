@@ -35,7 +35,24 @@
             </div>
         </div>
         <div class="article-body max-width">
-            {{ page.body|richtext }}
+            {% for block in page.body %}
+                {% if block.block_type == 'paragraph' %}
+                    {{ block.value|richtext }}
+                {% elif block.block_type == 'custom_image' %}
+                    {% responsive_image block.value.image classes="max-width img-16-9-cover border-radius-25 prevent-selection-img" %}
+                {% elif block.block_type == 'quote' %}
+                    <blockquote class="article-quote">
+                        {{ block.value.text|richtext }}
+                    </blockquote>
+                {% elif block.block_type == 'iframe' %}
+                    <div class="article-iframe-wrapper">
+                        <iframe
+                            src="{{ block.value.src }}"
+                            {% if block.value.allow_fullscreen %}allowfullscreen{% endif %}>
+                        </iframe>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
     <div class="max-width-90 column-directive">

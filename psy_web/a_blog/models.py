@@ -2,10 +2,10 @@ from datetime import date
 from django.core.paginator import Paginator
 from django.shortcuts import redirect
 from wagtail.admin.panels import FieldPanel
-from wagtail.fields import RichTextField
+from wagtail.fields import StreamField
 from wagtail.models import Page
 from django.db import models
-
+from a_blog.streamfield_blocks import ArticleBodyBlock
 from users.models import AuthorProfile
 
 
@@ -15,10 +15,6 @@ class MyWebSite(Page):
 
 # Create your models here.
 class BlogPage(Page):
-    body = RichTextField(blank=True)
-    content_panels = Page.content_panels + [
-        FieldPanel('body'),
-    ]
     template = "a_blog/blog_page.html"
 
     def get_context(self, request, *args, **kwargs):
@@ -37,9 +33,10 @@ class BlogPage(Page):
 
         return context
 
+
 class ArticlePage(Page):
     intro = models.CharField(max_length=80)
-    body = RichTextField(blank=True)
+    body = StreamField(ArticleBodyBlock(), blank=True)
     date = models.DateField("Post date", default=date.today)
     image = models.ForeignKey(
         'wagtailimages.Image',
@@ -47,12 +44,10 @@ class ArticlePage(Page):
         null=True,
         related_name='+'
     )
-    caption = models.CharField(blank=True, max_length=80)
-    time_to_read = models.PositiveIntegerField(default=0)
+    time_to_read = models.PositiveIntegerField(default=1)
     content_panels = Page.content_panels + [
         FieldPanel('intro'),
         FieldPanel('image'),
-        FieldPanel('caption'),
         FieldPanel('body'),
         FieldPanel('date'),
         FieldPanel('time_to_read'),
