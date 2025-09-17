@@ -38,4 +38,4 @@ class IFrameBlock(StructBlock):
 
     class Meta:
         icon = "site"
-        label = "IFrame"
+        label = "Вставка iframe"
