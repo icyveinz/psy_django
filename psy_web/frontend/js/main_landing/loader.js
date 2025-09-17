@@ -1,8 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     const loaderContainer = document.querySelector('.loader-container');
     const loader = document.getElementById('lottie-loader');
-
-    document.body.style.overflowY = "hidden";
 
     const animation = lottie.loadAnimation({
         container: loader,
@@ -12,20 +10,13 @@ document.addEventListener("DOMContentLoaded", function () {
         path: loader.dataset.lottie
     });
 
+    // Функция скрытия лоадера
     const hideLoader = () => {
         loaderContainer.style.transition = "opacity 0.7s ease";
         loaderContainer.style.opacity = "0";
-        setTimeout(() => {
-            loaderContainer.remove();
-            document.body.style.overflowY = "";
-        }, 500);
+        setTimeout(() => loaderContainer.remove(), 700); // время совпадает с transition
     };
 
-    animation.addEventListener('DOMLoaded', () => {
-        if (document.readyState === "complete") {
-            hideLoader();
-        } else {
-            window.addEventListener("load", hideLoader);
-        }
-    });
+    // После загрузки анимации и страницы скрываем лоадер
+    animation.addEventListener('DOMLoaded', hideLoader);
 });
