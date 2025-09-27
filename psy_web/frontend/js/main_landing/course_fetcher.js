@@ -1,36 +1,10 @@
 window.addEventListener("load", function() {
-
     const containers = document.querySelectorAll(".courses-container");
     let courses = [];
     const indices = new Map();
     const intervals = new Map();
     const autoSwitchDelay = 7000; // 7 секунд
     const pauseAfterClick = 15000; // пауза после клика
-
-    // Функция для установки фиксированной высоты на основе самого большого курса
-    function setFixedHeight(container) {
-        let maxHeight = 0;
-
-        courses.forEach(course => {
-            const tempDiv = document.createElement('div');
-            tempDiv.style.visibility = 'hidden';
-            tempDiv.style.position = 'absolute';
-            tempDiv.innerHTML = `
-                <h2 class="xp-docs-single-div__p">Курс: ${course.course_title}</h2>
-                <p class="xp-docs-single-div__p">Платформа: ${course.course_platform}</p>
-                <p class="xp-docs-single-div__p">Дата окончания: ${course.year_ended}</p>
-                <p class="xp-docs-single-div__p">Полученные навыки:</p>
-                <ul>
-                    ${course.study_results_li.map(item => `<li class="xp-docs-single-div__p">${item.skills_achieved}</li>`).join('')}
-                </ul>
-            `;
-            container.appendChild(tempDiv);
-            maxHeight = Math.max(maxHeight, tempDiv.offsetHeight);
-            container.removeChild(tempDiv);
-        });
-
-        container.style.height = `${maxHeight}px`;
-    }
 
     // Показ курса с анимацией
     function showCourse(container, index) {
@@ -66,9 +40,35 @@ window.addEventListener("load", function() {
             currentIndex = (currentIndex + 1) % courses.length;
             indices.set(container, currentIndex);
             showCourse(container, currentIndex);
-            startAutoSwitch(container); // запускаем следующий цикл
+            startAutoSwitch(container);
         }, delay);
         intervals.set(container, timeoutId);
+    }
+
+    // Функция для установки фиксированной высоты без временного div
+    function setFixedHeight(container) {
+        let maxHeight = 0;
+
+        courses.forEach(course => {
+            const temp = document.createElement('div');
+            temp.style.visibility = 'hidden';
+            temp.style.position = 'absolute';
+            temp.style.width = container.clientWidth + 'px';
+            temp.innerHTML = `
+                <h2 class="xp-docs-single-div__p">Курс: ${course.course_title}</h2>
+                <p class="xp-docs-single-div__p">Платформа: ${course.course_platform}</p>
+                <p class="xp-docs-single-div__p">Дата окончания: ${course.year_ended}</p>
+                <p class="xp-docs-single-div__p">Полученные навыки:</p>
+                <ul>
+                    ${course.study_results_li.map(item => `<li class="xp-docs-single-div__p">${item.skills_achieved}</li>`).join('')}
+                </ul>
+            `;
+            container.appendChild(temp);
+            maxHeight = Math.max(maxHeight, temp.offsetHeight);
+            container.removeChild(temp);
+        });
+
+        container.style.height = `${maxHeight}px`;
     }
 
     // Получаем данные
@@ -83,13 +83,9 @@ window.addEventListener("load", function() {
 
             containers.forEach(container => {
                 indices.set(container, 0);
-
-                // Ждем, пока шрифты полностью загрузятся, для точного измерения высоты
-                document.fonts.ready.then(() => {
-                    setFixedHeight(container); // один раз задаём высоту
-                    showCourse(container, 0);  // показываем первый курс
-                    startAutoSwitch(container); // запускаем авто-переключение
-                });
+                setFixedHeight(container);  // один раз задаём высоту
+                showCourse(container, 0);   // показываем первый курс
+                startAutoSwitch(container); // запускаем авто-переключение
             });
         })
         .catch(err => console.error(err));
