@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+window.addEventListener("load", function() {
 
     const containers = document.querySelectorAll(".courses-container");
     let courses = [];
@@ -83,9 +83,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
             containers.forEach(container => {
                 indices.set(container, 0);
-                setFixedHeight(container); // один раз задаём высоту
-                showCourse(container, 0);  // показываем первый курс
-                startAutoSwitch(container); // запускаем авто-переключение
+
+                // Ждем, пока шрифты полностью загрузятся, для точного измерения высоты
+                document.fonts.ready.then(() => {
+                    setFixedHeight(container); // один раз задаём высоту
+                    showCourse(container, 0);  // показываем первый курс
+                    startAutoSwitch(container); // запускаем авто-переключение
+                });
             });
         })
         .catch(err => console.error(err));
