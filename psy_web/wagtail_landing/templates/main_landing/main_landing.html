@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load fetch_appointment_footer %}
+{% load fetch_appointment_footer fetch_faq %}
 {% block assets %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
@@ -17,6 +17,7 @@
         {% include "main_landing/xp_block/desktop/xp_block.html" with xp_block=page.experience_blocks.first %}
         {% include "main_landing/xp_block/mobile/xp_block.html" with xp_block=page.experience_blocks.first %}
         {% include "a_blog/blog_page_for_landing.html" with articles=articles %}
+        {% fetch_faq_blocks %}
     </main>
     {% fetch_appointment_footer %}
 </div>

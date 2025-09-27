@@ -66,6 +66,7 @@ class StaticImagesPath(Orderable):
     right_arrow_blog_entity_svg = models.CharField(max_length=200)
     pagination_left_arrow_svg = models.CharField(max_length=200)
     pagination_right_arrow_svg = models.CharField(max_length=200)
+    plus_faq_svg = models.CharField(max_length=200)
 
     panels = [
         FieldPanel('quotes_svg'),
@@ -76,5 +77,16 @@ class StaticImagesPath(Orderable):
         FieldPanel('left_arrow_thin_svg'),
         FieldPanel('right_arrow_blog_entity_svg'),
         FieldPanel('pagination_left_arrow_svg'),
-        FieldPanel('pagination_right_arrow_svg')
+        FieldPanel('pagination_right_arrow_svg'),
+        FieldPanel('plus_faq_svg')
+    ]
+
+@register_snippet
+class FAQSingleCopy(Orderable):
+    faq_question = models.CharField(max_length=60)
+    faq_answer = models.CharField(max_length=250)
+
+    panels = [
+        FieldPanel('faq_question'),
+        FieldPanel('faq_answer'),
     ]

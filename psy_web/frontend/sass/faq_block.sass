@@ -1,0 +1,24 @@
+@mixin font_preset($weight, $size)
+  font-family: 'M PLUS Rounded 1c', sans-serif
+  font-weight: $weight
+  font-size: #{$size}cqw
+
+.faq-question-block
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.faq-img-sizer
+  width: 5%
+
+.faq-header
+  @include font_preset(700, 2.4)
+
+.faq-p
+  @include font_preset(400, 2)
+
+.faq-block-separator:not(:first-child)
+  margin-top: 1%
+
+.faq-p-hidden
+  display: none

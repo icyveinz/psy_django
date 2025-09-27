@@ -31,6 +31,7 @@ module.exports = {
             "./js/main_landing/gsap/services_animation_both.js",
             "./js/main_landing/gsap/xp_animation_desktop.js",
             "./js/main_landing/gsap/xp_animation_mobile.js",
+            "./js/main_landing/gsap/faq_animation.js"
         ],
         blog: [
             "./js/main_landing/loader.js",
