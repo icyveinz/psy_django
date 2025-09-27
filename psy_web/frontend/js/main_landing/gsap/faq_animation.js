@@ -1,5 +1,4 @@
 function faq_animation() {
-    console.log("activated");
     const articles = document.querySelectorAll("article");
 
     if (!articles.length) return;

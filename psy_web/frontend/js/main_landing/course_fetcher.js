@@ -1,30 +1,38 @@
 document.addEventListener("DOMContentLoaded", function() {
+
     const containers = document.querySelectorAll(".courses-container");
     let courses = [];
     const indices = new Map();
-    const intervals = new Map(); // для хранения интервалов по контейнерам
+    const intervals = new Map();
+    const autoSwitchDelay = 7000; // 7 секунд
+    const pauseAfterClick = 15000; // пауза после клика
 
-    fetch('/wagtail_landing/api/study-results/')
-        .then(response => response.json())
-        .then(data => {
-            courses = data;
+    // Функция для установки фиксированной высоты на основе самого большого курса
+    function setFixedHeight(container) {
+        let maxHeight = 0;
 
-            containers.forEach(container => {
-                indices.set(container, 0);
-                showCourse(container, 0); // первый курс без анимации
-
-                // Запускаем автоматическое переключение
-                const intervalId = setInterval(() => {
-                    let currentIndex = indices.get(container) || 0;
-                    currentIndex = (currentIndex + 1) % courses.length;
-                    indices.set(container, currentIndex);
-                    showCourse(container, currentIndex);
-                }, 7000); // 7 секунд
-
-                intervals.set(container, intervalId);
-            });
+        courses.forEach(course => {
+            const tempDiv = document.createElement('div');
+            tempDiv.style.visibility = 'hidden';
+            tempDiv.style.position = 'absolute';
+            tempDiv.innerHTML = `
+                <h2 class="xp-docs-single-div__p">Курс: ${course.course_title}</h2>
+                <p class="xp-docs-single-div__p">Платформа: ${course.course_platform}</p>
+                <p class="xp-docs-single-div__p">Дата окончания: ${course.year_ended}</p>
+                <p class="xp-docs-single-div__p">Полученные навыки:</p>
+                <ul>
+                    ${course.study_results_li.map(item => `<li class="xp-docs-single-div__p">${item.skills_achieved}</li>`).join('')}
+                </ul>
+            `;
+            container.appendChild(tempDiv);
+            maxHeight = Math.max(maxHeight, tempDiv.offsetHeight);
+            container.removeChild(tempDiv);
         });
 
+        container.style.height = `${maxHeight}px`;
+    }
+
+    // Показ курса с анимацией
     function showCourse(container, index) {
         if (!courses.length) return;
         const course = courses[index];
@@ -50,8 +58,42 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // Авто-переключение через рекурсивный setTimeout
+    function startAutoSwitch(container, delay = autoSwitchDelay) {
+        clearTimeout(intervals.get(container));
+        const timeoutId = setTimeout(() => {
+            let currentIndex = indices.get(container) || 0;
+            currentIndex = (currentIndex + 1) % courses.length;
+            indices.set(container, currentIndex);
+            showCourse(container, currentIndex);
+            startAutoSwitch(container); // запускаем следующий цикл
+        }, delay);
+        intervals.set(container, timeoutId);
+    }
+
+    // Получаем данные
+    fetch('/wagtail_landing/api/study-results/')
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
+        .then(data => {
+            courses = data;
+            if (!courses.length) return;
+
+            containers.forEach(container => {
+                indices.set(container, 0);
+                setFixedHeight(container); // один раз задаём высоту
+                showCourse(container, 0);  // показываем первый курс
+                startAutoSwitch(container); // запускаем авто-переключение
+            });
+        })
+        .catch(err => console.error(err));
+
+    // Обработка кликов на стрелки
     document.querySelectorAll(".prev-course, .next-course").forEach(button => {
-        button.addEventListener("click", function() {
+        const handleClick = (e) => {
+            e.preventDefault();
             const section = button.closest(".xp-docs-single-div");
             if (!section) return;
 
@@ -69,15 +111,11 @@ document.addEventListener("DOMContentLoaded", function() {
             indices.set(container, currentIndex);
             showCourse(container, currentIndex);
 
-            // Сбрасываем интервал, чтобы 15 секунд начинались заново после клика
-            clearInterval(intervals.get(container));
-            const intervalId = setInterval(() => {
-                let idx = indices.get(container) || 0;
-                idx = (idx + 1) % courses.length;
-                indices.set(container, idx);
-                showCourse(container, idx);
-            }, 15000);
-            intervals.set(container, intervalId);
-        });
+            // пауза авто-переключения после клика
+            startAutoSwitch(container, pauseAfterClick);
+        };
+
+        button.addEventListener("click", handleClick);
+        button.addEventListener("touchstart", handleClick); // для мобильных
     });
 });
