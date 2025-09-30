@@ -1,0 +1,4 @@
+{% load responsive_images %}
+<a href="{{ review.image.file.url }}" class="glightbox3 grid-element border-radius-20" data-gallery="gallery1">
+    {% responsive_image review.image classes="review-img max-width scale-animation-img prevent-selection-img" %}
+</a>

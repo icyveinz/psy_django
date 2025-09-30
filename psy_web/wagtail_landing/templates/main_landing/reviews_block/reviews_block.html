@@ -1,0 +1,25 @@
+{% if reviews %}
+    <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
+    <div class="max-width-90 column-directive">
+        <section class="shared-header-div margin-top-4">
+            <h2 class="shared-header-div__header">
+                Отзывы
+            </h2>
+        </section>
+        <section class="max-width-centered">
+            <div class="reviews-grid">
+                {% for review in reviews %}
+                    {% include "main_landing/reviews_block/single_review.html" with review=review %}
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+    <script defer src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const lightbox = GLightbox({
+                selector: '.glightbox3',
+            });
+        });
+    </script>
+{% endif %}

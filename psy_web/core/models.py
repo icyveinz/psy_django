@@ -90,3 +90,19 @@ class FAQSingleCopy(Orderable):
         FieldPanel('faq_question'),
         FieldPanel('faq_answer'),
     ]
+
+
+@register_snippet
+class ReviewScreenshot(Orderable):
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        on_delete=models.CASCADE,
+        related_name='+'
+    )
+
+    panels = [
+        FieldPanel('image')
+    ]
+
+    def __str__(self):
+        return self.image.title
