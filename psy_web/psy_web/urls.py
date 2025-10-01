@@ -8,7 +8,7 @@ from psy_web.seo_tools import robots_txt, sitemaps
 
 
 def trigger_error(request):
-    division_by_zero = 1 / 0
+    _ = 1 / 0
 
 
 urlpatterns = [

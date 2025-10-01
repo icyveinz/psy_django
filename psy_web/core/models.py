@@ -154,9 +154,7 @@ class StudyResultsCard(Orderable, ClusterableModel):
         FieldPanel("course_title", heading="Название курса"),
         FieldPanel("course_platform", heading="Платформа курса"),
         FieldPanel("year_ended", heading="Год окончания"),
-        InlinePanel(
-            "study_results_li", label="Экземпляр полученного навыка", max_num=4
-        ),
+        InlinePanel("study_results_li", label="Экземпляр полученного навыка", max_num=4),
     ]
 
 

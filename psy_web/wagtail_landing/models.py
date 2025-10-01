@@ -72,9 +72,7 @@ class NameBlock(Orderable, ClusterableModel):
 
 # -------------------- EducationPiece --------------------
 class EducationPiece(Orderable):
-    page = ParentalKey(
-        NameBlock, on_delete=models.CASCADE, related_name="education_pieces"
-    )
+    page = ParentalKey(NameBlock, on_delete=models.CASCADE, related_name="education_pieces")
     name_of_education = models.CharField(max_length=200)
     href = models.CharField(max_length=200)
 
