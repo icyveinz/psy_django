@@ -29,3 +29,11 @@ gen:
 	pip freeze > requirements.txt
 fix:
 	dos2unix entrypoint.sh
+lint:
+	cls
+	black .
+	ruff check .
+fix-linter:
+	cls
+	black .
+	ruff check . --fix

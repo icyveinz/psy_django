@@ -3,6 +3,7 @@ from django.utils.safestring import mark_safe
 
 register = template.Library()
 
+
 @register.simple_tag
 def responsive_image(image, widths="400,800,1200,1600,2000", sizes="100vw", classes=""):
     """
@@ -28,7 +29,7 @@ def responsive_image(image, widths="400,800,1200,1600,2000", sizes="100vw", clas
 
     default_rendition = image.get_rendition(f"width-{widths[len(widths)//2]}")
 
-    html = f'''
+    html = f"""
     <img 
         src="{default_rendition.url}" 
         srcset="{", ".join(srcset_parts)}" 
@@ -38,5 +39,5 @@ def responsive_image(image, widths="400,800,1200,1600,2000", sizes="100vw", clas
         class="{classes}"
         draggable="false"
     >
-    '''
+    """
     return mark_safe(html)

@@ -2,6 +2,7 @@ from django.contrib.sitemaps import Sitemap
 from django.http import HttpResponse
 from wagtail.models import Page
 
+
 def robots_txt(request):
     content = """
 User-agent: *
@@ -25,12 +26,12 @@ class StaticPageSitemap(Sitemap):
 
     def location(self, obj):
         url = obj.get_url()
-        return url if url else '/'
+        return url if url else "/"
 
     def lastmod(self, obj):
         return obj.latest_revision_created_at
 
 
 sitemaps = {
-    'pages': StaticPageSitemap,
+    "pages": StaticPageSitemap,
 }

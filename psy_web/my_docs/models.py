@@ -4,15 +4,15 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.documents.models import Document
 from wagtail.fields import RichTextField
 from wagtail.models import Page
-from a_blog.models import BlogPage
 
 
 class DocumentsFolder(Page):
     class Meta:
-        verbose_name = 'Папка для документов'
-        verbose_name_plural = 'Папки для документов'
+        verbose_name = "Папка для документов"
+        verbose_name_plural = "Папки для документов"
 
     pass
+
 
 # Create your models here.
 class DocumentsPage(Page):
@@ -27,12 +27,12 @@ class DocumentsPage(Page):
     )
 
     class Meta:
-        verbose_name = 'Экземпляр документа'
-        verbose_name_plural = 'Экземпляр документа'
+        verbose_name = "Экземпляр документа"
+        verbose_name_plural = "Экземпляр документа"
 
     content_panels = Page.content_panels + [
-        FieldPanel('body', heading='Документ в формате текста'),
-        FieldPanel('document', heading='Выбор документа как файла'),
-        FieldPanel('date_published', heading='Когда опубликован'),
+        FieldPanel("body", heading="Документ в формате текста"),
+        FieldPanel("document", heading="Выбор документа как файла"),
+        FieldPanel("date_published", heading="Когда опубликован"),
     ]
     template = "my_docs/docs_template.html"
