@@ -17,6 +17,10 @@ class AppointmentBlock(Orderable, ClusterableModel):
         InlinePanel('docs', label='Documents')
     ]
 
+    class Meta:
+        verbose_name = 'Блок для записи'
+        verbose_name_plural = 'Блоки для записи'
+
     def __str__(self):
         return self.my_message
 
@@ -27,6 +31,10 @@ class AppointmentSocialSquare(Orderable):
     alt_image_name = models.CharField(max_length=20)
     image = models.CharField(max_length=200)
     link_to_social = models.CharField(max_length=200)
+
+    class Meta:
+        verbose_name = 'Квадрат социальной сети'
+        verbose_name_plural = 'Квадраты социальных сетей'
 
     panels = [
         FieldPanel('alt_image_name'),
@@ -48,6 +56,10 @@ class AppointmentDocs(Orderable):
         'wagtailcore.Page', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
     )
 
+    class Meta:
+        verbose_name = 'Блок для документов'
+        verbose_name_plural = 'Блоки для документов'
+
     panels = [
         PageChooserPanel('offer_page'),
         PageChooserPanel('confidential_page'),
@@ -68,6 +80,10 @@ class StaticImagesPath(Orderable):
     pagination_right_arrow_svg = models.CharField(max_length=200)
     plus_faq_svg = models.CharField(max_length=200)
 
+    class Meta:
+        verbose_name = 'Пути для статичных картинок'
+        verbose_name_plural = 'Пути для статичных картинок'
+
     panels = [
         FieldPanel('quotes_svg'),
         FieldPanel('top_right_arrow_svg'),
@@ -86,6 +102,10 @@ class FAQSingleCopy(Orderable):
     faq_question = models.CharField(max_length=60)
     faq_answer = models.CharField(max_length=250)
 
+    class Meta:
+        verbose_name = 'Экземпляр вопроса в FAQ'
+        verbose_name_plural = 'Экземпляры вопросов в FAQ'
+
     panels = [
         FieldPanel('faq_question'),
         FieldPanel('faq_answer'),
@@ -100,9 +120,38 @@ class ReviewScreenshot(Orderable):
         related_name='+'
     )
 
+    class Meta:
+        verbose_name = 'Экземпляр скриншота в Отзывах'
+        verbose_name_plural = 'Экземпляры скриншотов в Отзывах'
+
     panels = [
         FieldPanel('image')
     ]
 
     def __str__(self):
         return self.image.title
+
+@register_snippet
+class StudyResultsCard(Orderable, ClusterableModel):
+    course_title = models.CharField(max_length=200)
+    course_platform = models.CharField(max_length=200)
+    year_ended = models.IntegerField()
+
+    class Meta:
+        verbose_name = 'Экземпляр оконченного курса'
+        verbose_name_plural = 'Экземпляры оконченных курсов'
+
+    panels = [
+        FieldPanel('course_title'),
+        FieldPanel('course_platform'),
+        FieldPanel('year_ended'),
+        InlinePanel('study_results_li', label='Study Results Cards', max_num=4)
+    ]
+
+class StudyResultsLink(Orderable):
+    page = ParentalKey(StudyResultsCard, on_delete=models.CASCADE, related_name='study_results_li')
+    skills_achieved = models.CharField(max_length=200)
+
+    class Meta:
+        verbose_name = 'Экземпляр полученного навыка'
+        verbose_name_plural = 'Экземпляр полученных навыков'

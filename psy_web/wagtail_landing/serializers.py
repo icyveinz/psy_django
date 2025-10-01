@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import StudyResultsCard, StudyResultsLink
+from core.models import StudyResultsLink, StudyResultsCard
 
 class StudyResultsLinkSerializer(serializers.ModelSerializer):
     class Meta:
