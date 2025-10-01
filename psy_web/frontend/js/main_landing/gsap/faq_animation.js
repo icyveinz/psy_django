@@ -30,11 +30,13 @@ function faq_animation() {
     articles.forEach((article) => {
         const btn = article.querySelector(".toggle-faq");
         const p = article.querySelector("p");
-        if (!btn || !p) return;
+        const questionBlock = article.querySelector(".faq-question-block");
+
+        if (!btn || !p || !questionBlock) return;
 
         p.style.overflow = "hidden";
 
-        btn.addEventListener("click", () => {
+        questionBlock.addEventListener("click", () => {
             const isHidden = p.classList.contains("faq-p-hidden");
 
             // закрываем все остальные FAQ
