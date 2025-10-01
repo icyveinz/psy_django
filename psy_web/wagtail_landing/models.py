@@ -8,18 +8,27 @@ from core.models import StudyResultsCard
 
 
 class LandingFolder(Page):
+
+    class Meta:
+        verbose_name = 'Папка для главной страницы'
+        verbose_name_plural = 'Папки для главной страницы'
+
     pass
 
 # -------------------- LandingMainPage --------------------
 class LandingMainPage(Page):
     landing_title = models.CharField(max_length=200)
 
+    class Meta:
+        verbose_name = 'Главная страница'
+        verbose_name_plural = 'Главные страницы'
+
     content_panels = Page.content_panels + [
-        FieldPanel('landing_title'),
-        InlinePanel('name_blocks', label='Name Blocks'),
-        InlinePanel('services_blocks', label='Services Blocks'),
-        InlinePanel('certificates_blocks', label='Certificates Blocks'),
-        InlinePanel('experience_blocks', label='Experience Blocks'),
+        FieldPanel('landing_title', heading='Главная страница'),
+        InlinePanel('name_blocks', label='Блок обо мне'),
+        InlinePanel('services_blocks', label='Блок о запросах клиента'),
+        InlinePanel('certificates_blocks', label='Блок о консультациях и ценах'),
+        InlinePanel('experience_blocks', label='Блок о моем опыте'),
     ]
 
     template = "main_landing/main_landing.html"
@@ -46,12 +55,12 @@ class NameBlock(Orderable, ClusterableModel):
     hours = models.IntegerField()
 
     panels = [
-        FieldPanel('name'),
-        FieldPanel('surname'),
-        FieldPanel('my_quote'),
-        FieldPanel('title_image'),
-        FieldPanel('hours'),
-        InlinePanel('education_pieces', label='Education Pieces'),
+        FieldPanel('name', heading='Имя'),
+        FieldPanel('surname', heading='Фамилия'),
+        FieldPanel('my_quote', heading='Моя цитата'),
+        FieldPanel('title_image', heading='Изображение для профиля'),
+        FieldPanel('hours', heading='Часы с клиентами'),
+        InlinePanel('education_pieces', label='Блок о моем образовании'),
     ]
 
 # -------------------- EducationPiece --------------------
@@ -61,8 +70,8 @@ class EducationPiece(Orderable):
     href = models.CharField(max_length=200)
 
     panels = [
-        FieldPanel('name_of_education'),
-        FieldPanel('href'),
+        FieldPanel('name_of_education', heading='Название ВУЗ-а'),
+        FieldPanel('href', heading='Ссылка на ВУЗ'),
     ]
 
 # -------------------- ServicesBlock --------------------
@@ -71,15 +80,17 @@ class ServicesBlock(Orderable, ClusterableModel):
     services_title = models.CharField(max_length=200)
 
     panels = [
-        FieldPanel('services_title'),
-        InlinePanel('services_pieces', label='Services Pieces')
+        FieldPanel('services_title', heading='Запрос клиента'),
+        InlinePanel('services_pieces', label='Решенная проблема клиента')
     ]
 
 class ServicesPiece(Orderable):
     services_block = ParentalKey(ServicesBlock, on_delete=models.CASCADE, related_name='services_pieces')
     name_of_service = models.CharField(max_length=200)
 
-    panels = [FieldPanel('name_of_service')]
+    panels = [
+        FieldPanel('name_of_service', heading='Решенная проблема клиента')
+    ]
 
 # -------------------- CertificatesBlock --------------------
 class CertificatesBlock(Orderable):
@@ -90,10 +101,10 @@ class CertificatesBlock(Orderable):
     actual_pricing = models.CharField(max_length=30)
 
     panels = [
-        FieldPanel('certificate_title'),
-        FieldPanel('timing'),
-        FieldPanel('online_pricing'),
-        FieldPanel('actual_pricing'),
+        FieldPanel('certificate_title', heading='Название типа консультации'),
+        FieldPanel('timing', heading='Время на консультацию'),
+        FieldPanel('online_pricing', heading='Цена за онлайн'),
+        FieldPanel('actual_pricing', heading='Цена за очную встречу'),
     ]
 
 # -------------------- MyExperienceBlock --------------------
@@ -106,16 +117,20 @@ class MyExperienceBlock(Orderable, ClusterableModel):
         'wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
     )
 
+    class Meta:
+        verbose_name = 'Блок о моем опыте'
+        verbose_name_plural = 'Блоки о моем опыте'
+
     panels = [
-        FieldPanel('hours_with_clients'),
-        FieldPanel('hours_of_studying'),
-        FieldPanel('my_quote'),
-        FieldPanel('profile_facts_picture'),
-        InlinePanel('facts_pieces', label='Facts Pieces'),
+        FieldPanel('hours_with_clients', heading='Часов с клиентами'),
+        FieldPanel('hours_of_studying', heading='Часов обучения'),
+        FieldPanel('my_quote', heading='Моя цитата'),
+        FieldPanel('profile_facts_picture', heading='Изображение для показа в фактах'),
+        InlinePanel('facts_pieces', label='Факты обо мне'),
     ]
 
 class FactsPiece(Orderable):
     page = ParentalKey(MyExperienceBlock, on_delete=models.CASCADE, related_name='facts_pieces')
     fact = models.CharField(max_length=200)
 
-    panels = [FieldPanel('fact')]
+    panels = [FieldPanel('fact', heading='Факт')]

@@ -12,9 +12,9 @@ class AppointmentBlock(Orderable, ClusterableModel):
     my_message = models.CharField(max_length=250)
 
     panels = [
-        FieldPanel('my_message'),
-        InlinePanel('social_squares', label='Social Squares'),
-        InlinePanel('docs', label='Documents')
+        FieldPanel('my_message', heading='Обращение для клиента'),
+        InlinePanel('social_squares', label='Квадрат с социальной сетью'),
+        InlinePanel('docs', label='Блок для выбора документов')
     ]
 
     class Meta:
@@ -32,14 +32,10 @@ class AppointmentSocialSquare(Orderable):
     image = models.CharField(max_length=200)
     link_to_social = models.CharField(max_length=200)
 
-    class Meta:
-        verbose_name = 'Квадрат социальной сети'
-        verbose_name_plural = 'Квадраты социальных сетей'
-
     panels = [
-        FieldPanel('alt_image_name'),
-        FieldPanel('image'),
-        FieldPanel('link_to_social'),
+        FieldPanel('alt_image_name', heading='Название картинки <alt>'),
+        FieldPanel('image', heading='Выбор изображения'),
+        FieldPanel('link_to_social', heading='Ссылка на социальную сеть'),
     ]
 
 class AppointmentDocs(Orderable):
@@ -56,14 +52,10 @@ class AppointmentDocs(Orderable):
         'wagtailcore.Page', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
     )
 
-    class Meta:
-        verbose_name = 'Блок для документов'
-        verbose_name_plural = 'Блоки для документов'
-
     panels = [
-        PageChooserPanel('offer_page'),
-        PageChooserPanel('confidential_page'),
-        PageChooserPanel('user_agreement_page'),
+        PageChooserPanel('offer_page', heading='Страница с офертой'),
+        PageChooserPanel('confidential_page', heading='Страница с политикой конфиденциальности'),
+        PageChooserPanel('user_agreement_page', heading='Страница с пользовательским соглашением'),
     ]
 
 # static_images
@@ -107,8 +99,8 @@ class FAQSingleCopy(Orderable):
         verbose_name_plural = 'Экземпляры вопросов в FAQ'
 
     panels = [
-        FieldPanel('faq_question'),
-        FieldPanel('faq_answer'),
+        FieldPanel('faq_question', heading='Вопрос клиента'),
+        FieldPanel('faq_answer', heading='Ответ для клиента'),
     ]
 
 
@@ -125,7 +117,7 @@ class ReviewScreenshot(Orderable):
         verbose_name_plural = 'Экземпляры скриншотов в Отзывах'
 
     panels = [
-        FieldPanel('image')
+        FieldPanel('image', heading='Скриншот с отзывом')
     ]
 
     def __str__(self):
@@ -142,16 +134,16 @@ class StudyResultsCard(Orderable, ClusterableModel):
         verbose_name_plural = 'Экземпляры оконченных курсов'
 
     panels = [
-        FieldPanel('course_title'),
-        FieldPanel('course_platform'),
-        FieldPanel('year_ended'),
-        InlinePanel('study_results_li', label='Study Results Cards', max_num=4)
+        FieldPanel('course_title', heading='Название курса'),
+        FieldPanel('course_platform', heading='Платформа курса'),
+        FieldPanel('year_ended', heading='Год окончания'),
+        InlinePanel('study_results_li', label='Экземпляр полученного навыка', max_num=4)
     ]
 
 class StudyResultsLink(Orderable):
     page = ParentalKey(StudyResultsCard, on_delete=models.CASCADE, related_name='study_results_li')
     skills_achieved = models.CharField(max_length=200)
 
-    class Meta:
-        verbose_name = 'Экземпляр полученного навыка'
-        verbose_name_plural = 'Экземпляр полученных навыков'
+    panels = [
+        FieldPanel('skills_achieved', heading='Полученный навык'),
+    ]

@@ -13,9 +13,17 @@ class MyWebSite(Page):
     def serve(self, request, *args, **kwargs):
         return redirect('/landings/main-landing/', permanent=False)
 
+    class Meta:
+        verbose_name = 'Корень сайта'
+        verbose_name_plural = 'Корни сайта'
+
 # Create your models here.
 class BlogPage(Page):
     template = "a_blog/blog_page.html"
+
+    class Meta:
+        verbose_name = 'Папка для статей'
+        verbose_name_plural = 'Папки для статей'
 
     def get_context(self, request, *args, **kwargs):
         from wagtail_landing.models import LandingMainPage
@@ -45,12 +53,17 @@ class ArticlePage(Page):
         related_name='+'
     )
     time_to_read = models.PositiveIntegerField(default=1)
+
+    class Meta:
+        verbose_name = 'Статья для блога'
+        verbose_name_plural = 'Статьи для блога'
+
     content_panels = Page.content_panels + [
-        FieldPanel('intro'),
-        FieldPanel('image'),
-        FieldPanel('body'),
-        FieldPanel('date'),
-        FieldPanel('time_to_read'),
+        FieldPanel('intro', heading='Вступление'),
+        FieldPanel('image', heading='Главное изображение'),
+        FieldPanel('body', heading='Тело статьи'),
+        FieldPanel('date', heading='Дата публикации'),
+        FieldPanel('time_to_read', heading='Времени на прочтение'),
     ]
 
     def get_context(self, request, *args, **kwargs):
