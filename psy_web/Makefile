@@ -31,5 +31,4 @@ fix:
 	dos2unix entrypoint.sh
 lint:
 	cls
-	black .
 	ruff check --fix
