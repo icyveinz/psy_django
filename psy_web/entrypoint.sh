@@ -51,3 +51,7 @@ cd ..
 # Start the Django application using Gunicorn
 echo "Starting the Django application..."
 exec gunicorn --bind 0.0.0.0:8001 psy_web.wsgi:application
+
+
+# !!!!!!!!! Когда буду делать деплой на сервере с такой конфигурацией: 2 x 3.3 ГГц, 2гб РАМ
+# gunicorn --bind 0.0.0.0:8001 -w 2 --threads 3 psy_web.wsgi:application
