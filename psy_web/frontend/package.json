@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "standard",
+    "lint:fix": "standard --fix"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +18,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^6.0.1",
     "sass": "^1.87.0",
+    "standard": "^17.1.2",
     "terser-webpack-plugin": "^5.3.14",
     "webpack": "^5.99.6",
     "webpack-cli": "^6.0.1"
