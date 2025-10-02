@@ -8,11 +8,13 @@
         {{ page.body|richtext }}
     </div>
     {% if page.document %}
-        <section class="shared-black-button border-radius-10 margin-top-auto">
-            <a class="shared-black-button__a black-button-padding"
-               href="{{ page.document.url }}" download>
-                Скачать документ
-            </a>
-        </section>
+        <div class="max-width-90 column-directive">
+            <section class="shared-black-button border-radius-10 margin-top-auto">
+                <a class="shared-black-button__a black-button-padding"
+                   href="{{ page.document.url }}" download>
+                    Скачать документ
+                </a>
+            </section>
+        </div>
     {% endif %}
 {% endblock %}

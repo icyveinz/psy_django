@@ -32,8 +32,4 @@ fix:
 lint:
 	cls
 	black .
-	ruff check .
-fix-linter:
-	cls
-	black .
-	ruff check . --fix
+	ruff check --fix
