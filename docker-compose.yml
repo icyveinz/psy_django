@@ -19,10 +19,8 @@ services:
   db:
     image: postgres:15
     container_name: db
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: applications_db
+    env_file:
+      - .env
     volumes:
       - ./db_data:/var/lib/postgresql/data
     networks:
@@ -34,10 +32,8 @@ services:
     volumes:
       - ./static:/psy_web/static
       - ./media:/psy_web/media
-    environment:
-      DJANGO_SUPERUSER_USERNAME: admin
-      DJANGO_SUPERUSER_EMAIL: admin@example.com
-      DJANGO_SUPERUSER_PASSWORD: admin
+    env_file:
+      - .env
     depends_on:
       - db
     networks:
