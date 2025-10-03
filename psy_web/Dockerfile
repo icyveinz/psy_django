@@ -1,4 +1,23 @@
-# Use the official Python 3.11 slim image as the base
+# ---------- assets builder (Node) ----------
+FROM node:20-alpine AS assets-builder
+
+WORKDIR /app/frontend
+
+# Install frontend dependencies using lockfile for reproducibility
+COPY frontend/package*.json ./
+RUN npm ci
+
+# Ensure output directories exist (webpack/gulp write to ../static/...)
+RUN mkdir -p /app/static/js /app/static/css
+
+# Copy source code needed for asset build
+COPY frontend/ ./
+
+# Build JS and CSS assets
+RUN npx webpack && npx gulp
+
+
+# ---------- runtime (Python) ----------
 FROM python:3.11-slim
 
 # Set environment variables
@@ -10,28 +29,25 @@ ENV PIP_NO_CACHE_DIR=off \
 # Set the working directory inside the container
 WORKDIR /psy_web
 
-# Install system dependencies and Node.js
+# Install runtime system dependencies (pg_isready used in entrypoint)
 RUN apt-get update && apt-get install -y \
     postgresql-client \
-    curl \
-    build-essential \
-    && curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
-    && apt-get install -y nodejs \
-    && npm install -g gulp-cli webpack webpack-cli
+  && rm -rf /var/lib/apt/lists/*
 
-# Copy the project files into the container
-COPY . /psy_web
-
-# Install Python dependencies
+# Install Python dependencies with better layer caching
+COPY requirements.txt /psy_web/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# RUN cd frontend && npm install
+# Copy application source
+COPY . /psy_web
+
+# Copy built assets from the Node builder
+COPY --from=assets-builder /app/static /psy_web/static
 
 # Set the Python path
 ENV PYTHONPATH=/psy_web
 
-# Copy the entrypoint script and make it executable
-COPY entrypoint.sh /psy_web/entrypoint.sh
+# Ensure entrypoint is executable
 RUN chmod +x /psy_web/entrypoint.sh
 
 # Define the entrypoint for the container
