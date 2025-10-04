@@ -125,7 +125,7 @@ WAGTAILDOCS_EXTENSIONS = [
 
 # Security settings for production
 if not DEBUG:
-    # HTTPS enforcement
+    # HTTPS enforcement !закомментировать если нужно поработать без дебага!
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
