@@ -7,10 +7,6 @@ from wagtail.documents import urls as wagtaildocs_urls
 from psy_web.seo_tools import robots_txt, sitemaps
 
 
-def trigger_error(request):
-    _ = 1 / 0
-
-
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("cms/", include(wagtailadmin_urls)),
@@ -18,6 +14,5 @@ urlpatterns = [
     path("wagtail_landing/", include("wagtail_landing.urls")),
     path("robots.txt", robots_txt),
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
-    path("sentry-debug/", trigger_error),
     path("", include(wagtail_urls)),
 ]
