@@ -43,8 +43,17 @@ python manage.py collectstatic --noinput
 
 # Start the Django application using Gunicorn
 echo "Starting the Django application..."
-exec gunicorn --bind 0.0.0.0:8001 psy_web.wsgi:application
+# exec gunicorn --bind 0.0.0.0:8001 psy_web.wsgi:application для дева
 
+exec gunicorn psy_web.wsgi:application \
+    --bind 0.0.0.0:8001 \
+    --workers 2 \
+    --threads 2 \
+    --timeout 120 \
+    --graceful-timeout 30 \
+    --log-level info \
+    --access-logfile - \
+    --error-logfile -
 
 # !!!!!!!!! Когда буду делать деплой на сервере с такой конфигурацией: 2 x 3.3 ГГц, 2гб РАМ
 # gunicorn --bind 0.0.0.0:8001 -w 2 --threads 3 psy_web.wsgi:application
