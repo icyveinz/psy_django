@@ -3,9 +3,9 @@ FROM node:20-alpine AS assets-builder
 
 WORKDIR /app/frontend
 
-# Install frontend dependencies using lockfile for reproducibility
-COPY frontend/package*.json ./
-RUN npm ci
+# Install frontend dependencies (will generate package-lock.json if missing)
+COPY frontend/package.json ./
+RUN npm install
 
 # Ensure output directories exist (webpack/gulp write to ../static/...)
 RUN mkdir -p /app/static/js /app/static/css
