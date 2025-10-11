@@ -21,10 +21,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy package files first for better Docker layer caching
-COPY frontend/package.json frontend/package-lock.json /psy_web/frontend/
+COPY frontend/package.json /psy_web/frontend/
 
 # Install Node.js dependencies
-RUN cd /psy_web/frontend && npm ci
+RUN cd /psy_web/frontend && npm install
 
 # Copy the rest of the application
 COPY . /psy_web
