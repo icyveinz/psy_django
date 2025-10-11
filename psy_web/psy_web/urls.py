@@ -8,8 +8,8 @@ from psy_web.seo_tools import robots_txt, sitemaps
 
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("cms/", include(wagtailadmin_urls)),
+    path("admin-django/", admin.site.urls),
+    path("cms-wagtail/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("wagtail_landing/", include("wagtail_landing.urls")),
     path("robots.txt", robots_txt),
