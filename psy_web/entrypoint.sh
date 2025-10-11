@@ -37,6 +37,16 @@ else:
     print(f"ℹ️ Superuser '\${username}' already exists or environment variables not set.")
 EOF
 
+# Ensure frontend assets are built (in case they weren't built during Docker build)
+echo "Building frontend assets..."
+cd /psy_web/frontend && \
+    npm run build
+
+# Verify static files exist
+echo "Checking static files..."
+ls -la /psy_web/static/css/ || echo "CSS directory not found"
+ls -la /psy_web/static/js/ || echo "JS directory not found"
+
 # Collect static files
 echo "Collecting static files..."
 python manage.py collectstatic --noinput

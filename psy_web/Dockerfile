@@ -17,25 +17,28 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     && curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
     && apt-get install -y nodejs \
-    && npm install -g gulp-cli webpack webpack-cli
+    && npm install -g gulp-cli webpack webpack-cli \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy only package files first
+# Copy package files first for better Docker layer caching
 COPY frontend/package.json frontend/package-lock.json /psy_web/frontend/
 
 # Install Node.js dependencies
 RUN cd /psy_web/frontend && npm ci
 
-# Build frontend assets
-RUN cd /psy_web/frontend && npx webpack && npx gulp
-
+# Copy the rest of the application
 COPY . /psy_web
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# RUN cd frontend && npm install
-RUN cd /psy_web/frontend && npm install
-RUN npx webpack && npx gulp
+# Create static directory structure for frontend build output
+RUN mkdir -p /psy_web/static/css /psy_web/static/js
+
+# Build frontend assets (this will create the static files)
+RUN cd /psy_web/frontend && \
+    npx webpack --mode=production && \
+    npx gulp
 
 # Set the Python path
 ENV PYTHONPATH=/psy_web

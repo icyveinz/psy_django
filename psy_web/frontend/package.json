@@ -5,7 +5,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "standard",
-    "lint:fix": "standard --fix"
+    "lint:fix": "standard --fix",
+    "build": "webpack --mode=production && gulp",
+    "build:dev": "webpack --mode=development && gulp",
+    "watch": "webpack --mode=development --watch & gulp watch"
   },
   "author": "",
   "license": "ISC",
