@@ -22,7 +22,7 @@ class AppointmentBlock(Orderable, ClusterableModel):
         verbose_name_plural = "Блоки для записи"
 
     def __str__(self):
-        return self.my_message
+        return "Модель с информацией для отображения футера"
 
 
 class AppointmentSocialSquare(Orderable):
@@ -108,6 +108,9 @@ class StaticImagesPath(Orderable):
         FieldPanel("plus_faq_svg"),
     ]
 
+    def __str__(self):
+        return "Модель с путями для статичных картинок"
+
 
 @register_snippet
 class FAQSingleCopy(Orderable):
@@ -122,6 +125,9 @@ class FAQSingleCopy(Orderable):
         FieldPanel("faq_question", heading="Вопрос клиента"),
         FieldPanel("faq_answer", heading="Ответ для клиента"),
     ]
+
+    def __str__(self):
+        return self.faq_question
 
 
 @register_snippet
@@ -156,6 +162,9 @@ class StudyResultsCard(Orderable, ClusterableModel):
         FieldPanel("year_ended", heading="Год окончания"),
         InlinePanel("study_results_li", label="Экземпляр полученного навыка", max_num=4),
     ]
+
+    def __str__(self):
+        return self.course_title
 
 
 class StudyResultsLink(Orderable):
