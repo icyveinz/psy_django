@@ -41,6 +41,13 @@ EOF
 echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
+# Build frontend assets
+echo "Running frontend build tasks..."
+cd frontend
+npx webpack
+gulp
+cd ..
+
 # Start the Django application using Gunicorn
 echo "Starting the Django application..."
 # exec gunicorn --bind 0.0.0.0:8001 psy_web.wsgi:application для дева
