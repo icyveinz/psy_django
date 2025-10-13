@@ -1,33 +1,12 @@
 from wagtail.blocks import (
-    StructBlock,
-    RichTextBlock,
-    CharBlock,
-    URLBlock,
-    BooleanBlock,
     StreamBlock,
+    RichTextBlock,
+    StructBlock,
+    CharBlock,
+    BooleanBlock,
+    URLBlock,
 )
 from wagtail.images.blocks import ImageChooserBlock
-
-
-class ArticleBodyBlock(StreamBlock):
-    paragraph = RichTextBlock(label="Параграф")
-    quote = StructBlock([("text", RichTextBlock())], icon="openquote", label="Цитата")
-    custom_image = StructBlock(
-        [("image", ImageChooserBlock()), ("caption", CharBlock(required=False))],
-        icon="image",
-        label="Картинка",
-    )
-    iframe = StructBlock(
-        [
-            (
-                "src",
-                URLBlock(required=True, help_text="Ссылка на встраиваемый контент"),
-            ),
-            ("allow_fullscreen", BooleanBlock(required=False, default=True)),
-        ],
-        icon="site",
-        label="iFrame",
-    )
 
 
 class QuoteBlock(StructBlock):
@@ -61,3 +40,14 @@ class IFrameBlock(StructBlock):
     class Meta:
         icon = "site"
         label = "Вставка iframe"
+
+
+class ArticleBodyBlock(StreamBlock):
+    paragraph = RichTextBlock(label="Параграф")
+    quote = QuoteBlock()
+    custom_image = CustomImageBlock()
+    iframe = IFrameBlock()
+
+    class Meta:
+        icon = "doc-full"
+        label = "Содержимое статьи"
