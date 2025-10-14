@@ -114,8 +114,8 @@ class StaticImagesPath(Orderable):
 
 @register_snippet
 class FAQSingleCopy(Orderable):
-    faq_question = models.CharField(max_length=60)
-    faq_answer = models.CharField(max_length=250)
+    faq_question = models.CharField(max_length=100)
+    faq_answer = models.CharField(max_length=800)
 
     class Meta:
         verbose_name = "Экземпляр вопроса в FAQ"
