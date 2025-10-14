@@ -1,3 +1,4 @@
+{% load typogrify_text %}
 <li class="xp-docs-single-div__p">
-    {{ li.fact }}
+    {{ li.fact|typogrify_filter|safe }}
 </li>

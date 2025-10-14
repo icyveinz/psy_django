@@ -1,3 +1,4 @@
+{% load typogrify_text %}
 <li class="services-single-card-div__services-ul__li">
     <img
             class="services-single-card-div__services-ul__li__img prevent-selection-img"
@@ -7,6 +8,6 @@
             loading="lazy"
     >
     <p class="services-single-card-div__services-ul__li__p">
-        {{ li.name_of_service }}
+        {{ li.name_of_service|typogrify_filter|safe }}
     </p>
 </li>

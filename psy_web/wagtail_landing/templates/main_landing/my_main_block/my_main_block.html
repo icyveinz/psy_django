@@ -1,4 +1,4 @@
-{% load responsive_images %}
+{% load responsive_images typogrify_text %}
 <div class="max-width-90">
     <section class="my-main-block-div">
         <section class="main-block-image-div border-radius-20 overflow-hidden">
@@ -21,7 +21,7 @@
                 </div>
                 <div class="main-block-author-div__thoughts-div">
                     <p class="main-block-author-div__thoughts-div__p zero-margin-top">
-                        {{ main_block.my_quote }}
+                        {{ main_block.my_quote|typogrify_filter|safe }}
                     </p>
                 </div>
             </section>

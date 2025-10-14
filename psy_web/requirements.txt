@@ -33,10 +33,12 @@ pytokens==0.1.10
 requests==2.32.5
 ruff==0.13.2
 sentry-sdk==2.37.1
+smartypants==2.0.2
 soupsieve==2.7
 sqlparse==0.5.3
 telepath==0.3.1
 typing_extensions==4.14.1
+typogrify==2.1.0
 tzdata==2025.2
 urllib3==2.5.0
 wagtail==7.1
