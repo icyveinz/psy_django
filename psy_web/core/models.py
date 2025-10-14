@@ -67,12 +67,17 @@ class AppointmentDocs(Orderable):
     )
 
     panels = [
-        PageChooserPanel("offer_page", heading="Страница с офертой"),
         PageChooserPanel(
-            "confidential_page", heading="Страница с политикой конфиденциальности"
+            "offer_page",
+            heading="Страница с офертой"
         ),
         PageChooserPanel(
-            "user_agreement_page", heading="Страница с пользовательским соглашением"
+            "confidential_page",
+            heading="Страница с политикой в отношении обработки персональных данных"
+        ),
+        PageChooserPanel(
+            "user_agreement_page",
+            heading="Страница с согласием на обработку персональных данных"
         ),
     ]
 
