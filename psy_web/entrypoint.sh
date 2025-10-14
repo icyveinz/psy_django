@@ -55,7 +55,7 @@ ls -la /psy_web/static/js/ || echo "JS directory not found"
 echo "Starting Django..."
 exec gunicorn psy_web.wsgi:application \
     --bind 0.0.0.0:8001 \
-    --workers 2 \
+    --workers 1 \
     --threads 2 \
     --timeout 120 \
     --graceful-timeout 30 \
