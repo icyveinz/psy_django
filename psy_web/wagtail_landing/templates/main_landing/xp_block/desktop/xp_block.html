@@ -1,4 +1,4 @@
-{% load responsive_images %}
+{% load responsive_images typogrify_text %}
 <div class="max-width-90 column-directive desktop-marker">
         <section class="shared-header-div margin-top-4" id="my-experience-anchor">
             <h2 class="shared-header-div__header">
@@ -40,7 +40,7 @@
                             draggable="false"
                     >
                 </div>
-                <p class="xp-quote-div__p">«{{ xp_block.my_quote }}»</p>
+                <p class="xp-quote-div__p">«{{ xp_block.my_quote|typogrify_filter|safe }}»</p>
             </section>
         </section>
     </div>

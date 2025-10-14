@@ -1,6 +1,6 @@
 {% extends 'a_blog/blog_layout.html' %}
 
-{% load wagtailcore_tags wagtailimages_tags ru_plural responsive_images %}
+{% load wagtailcore_tags wagtailimages_tags ru_plural responsive_images typogrify_text %}
 
 {% load static %}
 
@@ -19,7 +19,7 @@
                     </div>
                     <div class="grid-title-container">
                         <h2 class="blog-grid-text__header">
-                            {{ article.title }}
+                            {{ article.title|typogrify_filter|safe }}
                         </h2>
                         <a class="width-10" href="{% pageurl article %}" style="text-decoration: none;">
                             <div class="align-centered max-width black-border border-radius-10 black-background animated-block">

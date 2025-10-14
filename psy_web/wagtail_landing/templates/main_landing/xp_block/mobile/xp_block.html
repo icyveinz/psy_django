@@ -1,4 +1,4 @@
-{% load responsive_images %}
+{% load responsive_images typogrify_text %}
 <div class="max-width-90 column-directive mobile-marker">
     <section class="shared-header-div margin-top-4">
         <h2 class="shared-header-div__header">
@@ -37,6 +37,6 @@
                     draggable="false"
             >
         </div>
-        <p class="mobile-quote-p">«{{ xp_block.my_quote }}»</p>
+        <p class="mobile-quote-p">«{{ xp_block.my_quote|typogrify_filter|safe }}»</p>
     </section>
 </div>
