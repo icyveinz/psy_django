@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import strip_tags
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from typogrify.filters import typogrify
@@ -185,7 +186,7 @@ class StudyResultsCard(Orderable, ClusterableModel):
                 link.save()
 
     def __str__(self):
-        return self.course_title
+        return strip_tags(self.course_title)
 
 
 class StudyResultsLink(Orderable):
