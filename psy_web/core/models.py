@@ -1,6 +1,7 @@
 from django.db import models
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
+from typogrify.filters import typogrify
 from wagtail.admin.panels import FieldPanel, InlinePanel, PageChooserPanel
 from wagtail.models import Orderable
 from wagtail.snippets.models import register_snippet
@@ -167,6 +168,21 @@ class StudyResultsCard(Orderable, ClusterableModel):
         FieldPanel("year_ended", heading="Год окончания"),
         InlinePanel("study_results_li", label="Экземпляр полученного навыка", max_num=4),
     ]
+
+    def save(self, *args, **kwargs):
+        # Типографим только непустые поля
+        for field in ["course_title", "course_platform"]:
+            value = getattr(self, field)
+            if value:
+                setattr(self, field, typogrify(value))
+
+        super().save(*args, **kwargs)
+
+        # После сохранения — обработаем все связанные навыки
+        for link in self.study_results_li.all():
+            if link.skills_achieved:
+                link.skills_achieved = typogrify(link.skills_achieved)
+                link.save()
 
     def __str__(self):
         return self.course_title
