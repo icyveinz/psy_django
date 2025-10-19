@@ -69,6 +69,11 @@ window.addEventListener('load', function () {
     })
 
     container.style.height = `${maxHeight}px`
+    
+    // Refresh ScrollTrigger after height change to recalculate animation positions
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh()
+    }
   }
 
   // Получаем данные
@@ -87,6 +92,11 @@ window.addEventListener('load', function () {
         showCourse(container, 0) // показываем первый курс
         startAutoSwitch(container) // запускаем авто-переключение
       })
+      
+      // Final refresh after all containers are set up
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh()
+      }
     })
     .catch(err => console.error(err))
 
