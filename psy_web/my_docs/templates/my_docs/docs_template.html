@@ -1,9 +1,6 @@
 {% extends 'my_docs/docs_layout.html' %}
 {% load wagtailcore_tags %}
 {% block content %}
-    <p class="width-90 docs-page-p zero-margin-bottom">
-        Опубликовано: {{ page.date_published }}
-    </p>
     <div class="width-90 docs-font-marker">
         {{ page.body|richtext }}
     </div>
