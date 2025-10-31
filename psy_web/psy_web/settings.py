@@ -14,6 +14,8 @@ DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() == "true"
 # Allowed hosts через переменную окружения (список через запятую)
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "").split(",")
 
+CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
+
 # Application definition
 INSTALLED_APPS = [
     "django.contrib.admin",
