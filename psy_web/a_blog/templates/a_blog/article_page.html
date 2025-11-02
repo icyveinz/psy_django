@@ -1,6 +1,6 @@
 {% extends 'a_blog/blog_layout.html' %}
 
-{% load wagtailcore_tags ru_plural responsive_images %}
+{% load wagtailcore_tags ru_plural responsive_images richtext_typogrify %}
 
 {% load static %}
 
@@ -37,12 +37,12 @@
         <div class="article-body max-width">
             {% for block in page.body %}
                 {% if block.block_type == 'paragraph' %}
-                    {{ block.value|richtext }}
+                    {{ block.value|richtext_typogrify }}
                 {% elif block.block_type == 'custom_image' %}
                     {% responsive_image block.value.image classes="max-width img-16-9-cover border-radius-25 prevent-selection-img" %}
                 {% elif block.block_type == 'quote' %}
                     <blockquote class="article-quote">
-                        {{ block.value.text|richtext }}
+                        {{ block.value.text|richtext_typogrify }}
                     </blockquote>
                 {% elif block.block_type == 'iframe' %}
                     <div class="article-iframe-wrapper">
