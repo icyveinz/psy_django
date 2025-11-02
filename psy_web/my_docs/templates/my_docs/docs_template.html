@@ -1,8 +1,8 @@
 {% extends 'my_docs/docs_layout.html' %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags typogrify_text %}
 {% block content %}
     <div class="width-90 docs-font-marker">
-        {{ page.body|richtext }}
+        {{ page.body|richtext_typogrify }}
     </div>
     {% if page.document %}
         <div class="max-width-90 column-directive">
