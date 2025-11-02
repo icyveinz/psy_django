@@ -5,12 +5,12 @@ function xp_animation_desktop () {
   const timeline = gsap.timeline({
     scrollTrigger: {
       trigger: trigger_node,
-      start: 'top center',
+      start: 'top 70%', // вместо 'top center'
+      end: 'bottom 70%', // чтобы всё оставалось симметрично
       scrub: true,
-      end: 'bottom center'
       // markers: true
     }
-  })
+  });
 
   const firstAnimationIndices = [0, 1, 4] // индексы, для которых 1-я анимация
 
