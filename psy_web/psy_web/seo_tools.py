@@ -12,7 +12,7 @@ Disallow: /cms/
 Disallow: /wagtail_landing/
 Allow: /
 
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://ivanov-therapy.ru/sitemap.xml
 """
     return HttpResponse(content, content_type="text/plain")
 
