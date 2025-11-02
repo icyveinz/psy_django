@@ -1,7 +1,7 @@
 from django import template
 from django.utils.safestring import mark_safe
 from typogrify.filters import typogrify
-from wagtail.rich_text import expand_db_html
+from wagtail.rich_text import expand_db_html, RichText
 
 register = template.Library()
 
@@ -17,9 +17,10 @@ def typogrify_filter(value):
 
 @register.filter
 def richtext_typogrify(value):
-    """
-        Применяет типографику к richtext (wagtail).
-    """
+    """Применяет типографику к richtext (Wagtail)."""
     if not value:
         return ''
+    # Если это объект RichText — преобразуем в строку
+    if isinstance(value, RichText):
+        value = str(value)
     return mark_safe(typogrify(expand_db_html(value)))
