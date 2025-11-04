@@ -25,7 +25,6 @@ services:
     volumes:
       - ./static:/psy_web/static
       - ./media:/psy_web/media
-      - ./psy_web:/psy_web
     env_file:
       - .env
     depends_on:
@@ -34,16 +33,15 @@ services:
       - combined-network
 
   psy_scheduler:
-    build: ./psy_web
+    image: psy_django-psy_web  # используем уже собранный образ psy_web
     container_name: psy_scheduler
     restart: unless-stopped
     command: >
       sh -c "while true; do
                python manage.py publish_scheduled_pages;
-               sleep 60;
+               sleep 300;
              done"
     volumes:
-      - ./psy_web:/psy_web
       - ./static:/psy_web/static
       - ./media:/psy_web/media
     env_file:
