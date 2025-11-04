@@ -21,7 +21,29 @@ services:
   psy_web:
     build: ./psy_web
     container_name: psy_web
+    restart: unless-stopped
     volumes:
+      - ./static:/psy_web/static
+      - ./media:/psy_web/media
+      - ./psy_web:/psy_web
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - combined-network
+
+  psy_scheduler:
+    build: ./psy_web
+    container_name: psy_scheduler
+    restart: unless-stopped
+    command: >
+      sh -c "while true; do
+               python manage.py publish_scheduled_pages;
+               sleep 60;
+             done"
+    volumes:
+      - ./psy_web:/psy_web
       - ./static:/psy_web/static
       - ./media:/psy_web/media
     env_file:
@@ -34,6 +56,7 @@ services:
   db:
     image: postgres:15
     container_name: db
+    restart: unless-stopped
     env_file:
       - .env
     volumes:
@@ -44,6 +67,7 @@ services:
   certbot:
     image: certbot/certbot
     container_name: certbot
+    restart: unless-stopped
     volumes:
       - ./nginx/letsencrypt:/etc/letsencrypt
       - ./nginx/certbot/www:/var/www/certbot
