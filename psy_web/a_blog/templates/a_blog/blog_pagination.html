@@ -1,6 +1,6 @@
 <section class="pagination-container margin-top-auto">
     {% if articles.has_previous %}
-        <a class="pagination-a-container align-right-side" href="?page={{ articles.previous_page_number }}">
+        <a class="pagination-a-container align-right-side prevent-selection-img" href="?page={{ articles.previous_page_number }}">
             <img
                     class="width-40 prevent-selection-img"
                     src="{{ static_images.pagination_left_arrow_svg }}"
@@ -14,7 +14,7 @@
         {{ articles.number }}
     </span>
     {% if articles.has_next %}
-        <a class="pagination-a-container align-left-side" href="?page={{ articles.next_page_number }}">
+        <a class="pagination-a-container align-left-side prevent-selection-img" href="?page={{ articles.next_page_number }}">
             <img
                     class="width-40 prevent-selection-img"
                     src="{{ static_images.pagination_right_arrow_svg }}"
