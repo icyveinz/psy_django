@@ -1,0 +1,12 @@
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.qxCTlb');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            ym(104142839, 'reachGoal', 'click_zapisatsya');
+            console.log('Цель "click_zapisatsya" отправлена в Метрику');
+        });
+    });
+});
+</script>
