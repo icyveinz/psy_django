@@ -1,10 +1,9 @@
 <script>
 (function() {
     document.addEventListener('click', function(e) {
-        const target = e.target.closest('.qxCTlb'); // ищем кнопку
+        const target = e.target.closest('.qxCTlb');
         if (target) {
             ym(104142839, 'reachGoal', 'click_zapisatsya');
-            console.log('Цель click_zapisatsya отправлена');
         }
     });
 })();
