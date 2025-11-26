@@ -8,8 +8,8 @@
 {% endblock %}
 {% block body %}
 <div class="max-width-centered min-height-max">
-    {% include "main_landing/menu/menu.html" %}
-    {% include "main_landing/menu/mobile_menu.html" %}
+    {% include "main_landing/menu/menu.html" with telegram_link=page.analytics_link %}
+    {% include "main_landing/menu/mobile_menu.html" with telegram_link=page.analytics_link %}
     <main class="max-width-centered">
         {% include "main_landing/my_main_block/my_main_block.html" with main_block=page.name_blocks.first %}
         {% include "main_landing/services_block/services_block.html" with services_block=page.services_blocks %}
