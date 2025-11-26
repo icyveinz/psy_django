@@ -22,7 +22,6 @@ module.exports = {
     ],
     main_landing: [
       './js/main_landing/loader.js',
-      './js/blog/blog_animation_landing.js',
       './js/main_landing/burger_menu.js',
       './js/main_landing/gsap/certificates_animation_both.js',
       './js/main_landing/course_fetcher.js',
