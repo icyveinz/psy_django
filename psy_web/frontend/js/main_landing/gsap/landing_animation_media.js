@@ -2,7 +2,6 @@ import services_animation_both from './services_animation_both'
 import xp_animation_desktop from './xp_animation_desktop'
 import certificates_animation_both from './certificates_animation_both'
 import xp_animation_mobile from './xp_animation_mobile'
-import blog_animation_landing from '../../blog/blog_animation_landing'
 import faq_animation from './faq_animation'
 
 gsap.registerPlugin(ScrollTrigger)
