@@ -17,6 +17,7 @@ class LandingFolder(Page):
 # -------------------- LandingMainPage --------------------
 class LandingMainPage(Page):
     landing_title = models.CharField(max_length=200)
+    analytics_link = models.CharField(max_length=250)
 
     class Meta:
         verbose_name = "Главная страница"
@@ -24,7 +25,7 @@ class LandingMainPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("landing_title", heading="Главная страница"),
-        InlinePanel("telegram_magnet", label="Ссылка на канал"),
+        FieldPanel("analytics_link", heading="Ссылка на Telegram (аналитика)"),
         InlinePanel("name_blocks", label="Блок обо мне"),
         InlinePanel("services_blocks", label="Блок о запросах клиента"),
         InlinePanel("certificates_blocks", label="Блок о консультациях и ценах"),
@@ -32,19 +33,6 @@ class LandingMainPage(Page):
     ]
 
     template = "main_landing/main_landing.html"
-
-
-class TelegramChannelMenuEntity(Orderable):
-    page = ParentalKey(
-        LandingMainPage,
-        on_delete=models.CASCADE,
-        related_name="telegram_magnet"
-    )
-    analytics_link = models.CharField(max_length=250)
-
-    panels = [
-        FieldPanel("analytics_link", heading="Ссылка на канал в Telegram (аналитика)")
-    ]
 
 
 # -------------------- NameBlock --------------------
