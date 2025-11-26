@@ -11,14 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
       services_animation_both()
       certificates_animation_both()
       xp_animation_mobile()
-      blog_animation_landing()
       faq_animation()
     },
     '(min-width: 751px)': function () {
       services_animation_both()
       certificates_animation_both()
       xp_animation_desktop()
-      blog_animation_landing()
       faq_animation()
     }
   })
