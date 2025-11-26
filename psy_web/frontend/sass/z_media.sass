@@ -206,3 +206,27 @@
 
   .Xfsokf
     right: 20px !important
+
+  .floating-tg-btn
+    position: fixed
+    bottom: 20px
+    right: 20px
+    width: 58px
+    height: 58px
+    background: #25A4E2
+    border-radius: 50%
+    display: flex
+    align-items: center
+    justify-content: center
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25)
+    z-index: 9999
+    transition: transform 0.2s ease
+
+  .floating-tg-btn img
+    width: 28px
+    height: 28px
+    filter: brightness(0) invert(1)
+
+
+  .floating-tg-btn:active
+    transform: scale(0.92)
