@@ -16,7 +16,6 @@
         {% include "main_landing/certificates_block/certificates_block.html" with certificates_block=page.certificates_blocks %}
         {% include "main_landing/xp_block/desktop/xp_block.html" with xp_block=page.experience_blocks.first %}
         {% include "main_landing/xp_block/mobile/xp_block.html" with xp_block=page.experience_blocks.first %}
-        {% include "a_blog/blog_page_for_landing.html" with articles=articles %}
         {% fetch_faq_blocks %}
         {% fetch_review_screenshots %}
     </main>
