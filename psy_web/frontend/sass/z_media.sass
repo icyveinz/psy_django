@@ -14,16 +14,16 @@
     display: block
 
   .floating-tg-btn
-    // позиция внутри контейнера max-width:1600px
-    right: calc((100vw - 1600px) / 2 + 20px)
-
-    // увеличенный размер (можешь настроить)
-    width: 70px
-    height: 70px
+    position: fixed
+    bottom: 4.5vh
+    right: 3.5vw
+    width: 85px
+    height: 85px
+    z-index: 999999 !important
 
     img
-        width: 70px
-        height: 70px
+        width: 85px
+        height: 85px
 
 
 @media (max-width: 750px)
@@ -231,7 +231,7 @@
     border-radius: 50%
     background: transparent
     box-shadow: none
-    z-index: 9999
+    z-index: 999999 !important
     transition: transform 0.2s ease
 
     img
