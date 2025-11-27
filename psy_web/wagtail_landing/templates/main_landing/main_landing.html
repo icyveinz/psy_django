@@ -8,12 +8,10 @@
 {% endblock %}
 {% block body %}
 <div class="max-width-centered min-height-max">
-    {% include "main_landing/menu/menu.html" with telegram_link=page.analytics_link %}
+    {% include "main_landing/menu/menu.html" %}
     {% include "main_landing/menu/mobile_menu.html" %}
     <main class="max-width-centered">
-        <a href="{{ page.analytics_link }}" class="floating-tg-btn" target="_blank" rel="noopener">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
-        </a>
+        {% include "main_landing/floating_tg/floating_tg.html" with telegram_link=page.analytics_link %}
         {% include "main_landing/my_main_block/my_main_block.html" with main_block=page.name_blocks.first %}
         {% include "main_landing/services_block/services_block.html" with services_block=page.services_blocks %}
         {% include "main_landing/certificates_block/certificates_block.html" with certificates_block=page.certificates_blocks %}
