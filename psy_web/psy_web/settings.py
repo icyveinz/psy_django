@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "django.contrib.sitemaps",
     "rest_framework",
     "wagtail_landing",
+    "a_blog",
     "my_docs",
     "core",
     "wagtail.contrib.forms",

@@ -34,8 +34,6 @@ class LandingMainPage(Page):
 
     template = "main_landing/main_landing.html"
 
-    parent_page_types = ['wagtailcore.Page', 'wagtail_landing.LandingFolder']
-
 
 # -------------------- NameBlock --------------------
 class NameBlock(Orderable, ClusterableModel):

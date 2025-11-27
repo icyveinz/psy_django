@@ -18,6 +18,7 @@ cd /psy_web
 # Run Django migrations
 echo "Running Django migrations..."
 python manage.py makemigrations wagtail_landing
+python manage.py makemigrations a_blog
 python manage.py makemigrations my_docs
 python manage.py makemigrations core
 python manage.py migrate
