@@ -32,25 +32,6 @@ services:
     networks:
       - combined-network
 
-  psy_scheduler:
-    image: psy_django-psy_web  # используем уже собранный образ psy_web
-    container_name: psy_scheduler
-    restart: unless-stopped
-    command: >
-      sh -c "while true; do
-               python manage.py publish_scheduled_pages;
-               sleep 300;
-             done"
-    volumes:
-      - ./static:/psy_web/static
-      - ./media:/psy_web/media
-    env_file:
-      - .env
-    depends_on:
-      - db
-    networks:
-      - combined-network
-
   db:
     image: postgres:15
     container_name: db
