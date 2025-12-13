@@ -3,15 +3,13 @@ from modelcluster.models import ClusterableModel
 from wagtail.models import Page, Orderable
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from modelcluster.fields import ParentalKey
+from core.abstract_models import AbstractFolderPage
 
 
-class LandingFolder(Page):
-
+class LandingFolder(AbstractFolderPage):
     class Meta:
         verbose_name = "Папка для главной страницы"
         verbose_name_plural = "Папки для главной страницы"
-
-    pass
 
 
 # -------------------- LandingMainPage --------------------
