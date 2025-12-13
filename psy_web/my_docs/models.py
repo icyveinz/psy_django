@@ -1,5 +1,6 @@
 from datetime import date
 from django.db import models
+from django.http import Http404
 from wagtail.admin.panels import FieldPanel
 from wagtail.documents.models import Document
 from wagtail.fields import RichTextField
@@ -11,7 +12,8 @@ class DocumentsFolder(Page):
         verbose_name = "Папка для документов"
         verbose_name_plural = "Папки для документов"
 
-    pass
+    def serve(self, request, *args, **kwargs):
+        raise Http404
 
 
 # Create your models here.
